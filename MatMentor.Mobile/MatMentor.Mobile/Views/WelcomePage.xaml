@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MatMentor.Mobile.Views.WelcomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+    x:DataType="viewModels:WelcomeViewModel"
+    Title="Velkommen">
+
+    <VerticalStackLayout
+        Padding="32"
+        Spacing="24"
+        VerticalOptions="Center">
+
+        <Label
+            Text="MatMentor"
+            FontSize="36"
+            FontAttributes="Bold"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="Matematikhjælp, når du har brug for det"
+            FontSize="18"
+            HorizontalTextAlignment="Center" />
+
+        <Button
+            Text="Log ind"
+            Command="{Binding LoginCommand}" />
+
+        <Button
+            Text="Opret profil"
+            Command="{Binding CreateProfileCommand}" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MatMentor.Mobile.Views.TutorConversationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+    x:DataType="viewModels:TutorConversationViewModel"
+    Title="AI-tutor">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="18">
+
+            <Label
+                Text="Din opgave"
+                FontSize="20"
+                FontAttributes="Bold" />
+
+            <Border Padding="16">
+                <Label
+                    Text="{Binding ExerciseText}"
+                    FontSize="16" />
+            </Border>
+
+            <Label
+                Text="Det har du allerede prøvet"
+                FontSize="18"
+                FontAttributes="Bold" />
+
+            <Border Padding="16">
+                <Label
+                    Text="{Binding AttemptText}"
+                    FontSize="16" />
+            </Border>
+
+            <Label
+                Text="AI-tutor"
+                FontSize="18"
+                FontAttributes="Bold" />
+
+            <Border Padding="16">
+                <Label
+                    Text="AI-tutorens vejledning vises her, når AI-integrationen er koblet på."
+                    FontSize="16" />
+            </Border>
+
+            <Label
+                Text="Din besked"
+                FontSize="18"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="Samtale"
+                FontSize="18"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="AI-tutorens svar kommer også til at blive vist her, når AI-integrationen er koblet på."
+                FontSize="14"
+                FontAttributes="Italic" />
+
+            <VerticalStackLayout
+                BindableLayout.ItemsSource="{Binding Messages}"
+                Spacing="12">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="viewModels:TutorMessageViewModel">
+
+                        <Border Padding="12">
+
+                            <VerticalStackLayout Spacing="4">
+
+                                <Label
+                                    Text="{Binding Sender}"
+                                    FontAttributes="Bold" />
+
+                                <Label
+                                    Text="{Binding Text}" />
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </VerticalStackLayout>
+
+            <Editor
+                Placeholder="Skriv dit svar, din mellemregning eller dit spørgsmål"
+                Text="{Binding StudentMessage}"
+                AutoSize="TextChanges"
+                HeightRequest="100" />
+
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="Red"
+                FontSize="14" />
+
+            <Button
+                Text="Send"
+                Command="{Binding SendMessageCommand}" />
+
+            <Label
+                Text="{Binding ConversationStatusMessage}"
+                FontSize="14"
+                FontAttributes="Italic" />
+
+            <Button
+                Text="Afslut samtale"
+                Command="{Binding EndConversationCommand}"
+                Margin="0,24,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

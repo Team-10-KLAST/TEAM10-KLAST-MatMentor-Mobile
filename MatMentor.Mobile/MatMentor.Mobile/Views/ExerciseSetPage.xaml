@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MatMentor.Mobile.Views.ExerciseSetPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+    x:DataType="viewModels:ExerciseSetViewModel"
+    Title="Øvesæt">
+
+    <VerticalStackLayout
+        Padding="32"
+        Spacing="24"
+        VerticalOptions="Center">
+
+        <Label
+            Text="Klar til at øve?"
+            FontSize="32"
+            FontAttributes="Bold"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="Du har valgt:"
+            FontSize="16"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="{Binding TopicName}"
+            FontSize="24"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="Øvesættet indeholder 5 opgaver."
+            FontSize="16"
+            HorizontalTextAlignment="Center" />
+
+        <Button
+            Text="Start øvesæt"
+            Command="{Binding StartExerciseSetCommand}" />
+
+    </VerticalStackLayout>
+</ContentPage>

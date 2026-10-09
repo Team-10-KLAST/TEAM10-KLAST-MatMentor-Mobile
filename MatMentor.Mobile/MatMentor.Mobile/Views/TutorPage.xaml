@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MatMentor.Mobile.Views.TutorPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+    x:DataType="viewModels:TutorViewModel"
+    Title="AI-tutor">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="32"
+            Spacing="20">
+
+            <Label
+                Text="Få hjælp til en opgave"
+                FontSize="32"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="Indsæt din matematikopgave og fortæl, hvad du allerede har prøvet."
+                FontSize="16" />
+
+            <Label
+                Text="Din opgave"
+                FontAttributes="Bold" />
+
+            <Editor
+                Placeholder="Skriv eller indsæt matematikopgaven her"
+                Text="{Binding ExerciseText}"
+                AutoSize="TextChanges"
+                HeightRequest="140" />
+
+            <Label
+                Text="Hvad har du allerede prøvet?"
+                FontAttributes="Bold" />
+
+            <Editor
+                Placeholder="Fortæl hvordan du har forsøgt at løse opgaven"
+                Text="{Binding AttemptText}"
+                AutoSize="TextChanges"
+                HeightRequest="120" />
+
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="Red"
+                FontSize="14" />
+
+            <Label
+                Text="{Binding StatusMessage}"
+                FontAttributes="Bold"
+                FontSize="14" />
+
+            <Button
+                Text="Start hjælp"
+                Command="{Binding StartTutorCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

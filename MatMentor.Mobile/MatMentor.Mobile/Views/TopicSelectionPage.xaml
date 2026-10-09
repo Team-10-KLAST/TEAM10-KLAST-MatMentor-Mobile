@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MatMentor.Mobile.Views.TopicSelectionPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+    x:DataType="viewModels:TopicSelectionViewModel"
+    Title="Vælg emne">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="32"
+            Spacing="20">
+
+            <Label
+                Text="Hvad vil du øve?"
+                FontSize="32"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="Vælg et matematikemne."
+                FontSize="16" />
+
+            <Button
+                Text="Brøk, decimaltal og procent"
+                Command="{Binding SelectTopicCommand}"
+                CommandParameter="Brøk, decimaltal og procent" />
+
+            <Button
+                Text="Handelsregning"
+                Command="{Binding SelectTopicCommand}"
+                CommandParameter="Handelsregning" />
+
+            <Button
+                Text="Tid"
+                Command="{Binding SelectTopicCommand}"
+                CommandParameter="Tid" />
+
+            <Label
+                Text="{Binding SelectionMessage}"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="Log ud"
+                Command="{Binding LogoutCommand}"
+                Margin="0,24,0,0" />
+
+            <Button
+                Text="Få hjælp af AI-tutor"
+                Command="{Binding OpenTutorCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
