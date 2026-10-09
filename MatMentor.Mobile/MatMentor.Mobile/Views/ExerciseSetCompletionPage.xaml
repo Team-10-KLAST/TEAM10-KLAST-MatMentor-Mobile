@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MatMentor.Mobile.Views.ExerciseSetCompletionPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+    x:DataType="viewModels:ExerciseSetCompletionViewModel"
+    Title="Øvesæt færdigt">
+
+    <VerticalStackLayout
+        Padding="32"
+        Spacing="24"
+        VerticalOptions="Center">
+
+        <Label
+            Text="Godt arbejdet!"
+            FontSize="32"
+            FontAttributes="Bold"
+            HorizontalOptions="Center" />
+
+        <Label
+            Text="Du har besvaret alle 5 opgaver i:"
+            FontSize="18"
+            HorizontalTextAlignment="Center" />
+
+        <Label
+            Text="{Binding TopicName}"
+            FontSize="24"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center" />
+
+        <Button
+            Text="Vælg et nyt emne"
+            Command="{Binding ChooseTopicCommand}" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

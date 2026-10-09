@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MatMentor.Mobile.Views.CreateStudentProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+    x:DataType="viewModels:CreateStudentProfileViewModel"
+    Title="Opret profil">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="32"
+            Spacing="20">
+
+            <Label
+                Text="Opret din profil"
+                FontSize="32"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="Fortæl lidt om dig, så MatMentor kan tilpasse opgaverne."
+                FontSize="16" />
+
+            <Label
+                Text="Brugernavn" />
+
+            <Entry
+                Placeholder="Skriv dit brugernavn"
+                Text="{Binding Username}" />
+
+            <Label
+                Text="Kodeord" />
+
+            <Entry
+                Placeholder="Skriv dit kodeord"
+                IsPassword="True"
+                Text="{Binding Password}" />
+
+            <Label
+                Text="Forælders e-mail" />
+
+            <Entry
+                Placeholder="navn@eksempel.dk"
+                Keyboard="Email"
+                Text="{Binding ParentEmail}" />
+
+            <Label
+                Text="Klassetrin" />
+
+            <Picker
+                Title="Vælg klassetrin"
+                ItemsSource="{Binding Grades}"
+                SelectedItem="{Binding Grade}" />
+
+            <Label
+                Text="Interesser"
+                 FontAttributes="Bold" />
+
+            <Label
+                Text="Du kan vælge flere eller springe over."
+                FontSize="14" />
+
+            <HorizontalStackLayout Spacing="12">
+
+                <CheckBox
+                IsChecked="{Binding IsFootballSelected}" />
+
+            <Label
+                Text="Fodbold"
+                VerticalOptions="Center" />
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="12">
+
+            <CheckBox
+                IsChecked="{Binding IsRidingSelected}" />
+
+            <Label
+                Text="Ridning"
+                VerticalOptions="Center" />
+
+            </HorizontalStackLayout>
+
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="Red"
+                FontSize="14" />
+
+            <Button
+                Text="Opret profil"
+                Command="{Binding CreateStudentProfileCommand}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
