@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MatMentor.Mobile.Views.StartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+    x:DataType="viewModels:StartViewModel"
+    Title="Start">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="22">
+
+            <Label
+                Text="Hej igen"
+                FontSize="32"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="Hvad skal vi lave i dag?"
+                FontSize="20"
+                Margin="0,-15,0,15" />
+
+            <Border
+                Padding="24"
+                BackgroundColor="#20A57A"
+                StrokeThickness="0">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PracticeCommand}" />
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        Text="Øv dig"
+                        TextColor="White"
+                        FontSize="27"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="Vælg et emne og få opgaver, der passer til dig"
+                        TextColor="White"
+                        FontSize="18" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border
+                Padding="24"
+                BackgroundColor="#5B4FC4"
+                StrokeThickness="0">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TutorCommand}" />
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        Text="Få hjælp til lektier"
+                        TextColor="White"
+                        FontSize="27"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="Skriv din egen opgave ind, så hjælper tutoren dig videre"
+                        TextColor="White"
+                        FontSize="18" />
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
