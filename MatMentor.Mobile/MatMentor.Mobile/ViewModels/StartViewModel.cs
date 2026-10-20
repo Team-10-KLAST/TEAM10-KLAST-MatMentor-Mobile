@@ -9,6 +9,8 @@ public class StartViewModel
 
     public ICommand TutorCommand { get; }
 
+    public ICommand LogoutCommand { get; }
+
     public StartViewModel()
     {
         PracticeCommand = new Command(async () =>
@@ -16,5 +18,14 @@ public class StartViewModel
 
         TutorCommand = new Command(async () =>
             await Shell.Current.GoToAsync(nameof(TutorPage)));
+
+        LogoutCommand = new Command(
+            async () => await LogoutAsync());
+    }
+
+    // Returns the user to the welcome page and clears the navigation stack.
+    private async Task LogoutAsync()
+    {
+        await Shell.Current.GoToAsync("//WelcomePage");
     }
 }

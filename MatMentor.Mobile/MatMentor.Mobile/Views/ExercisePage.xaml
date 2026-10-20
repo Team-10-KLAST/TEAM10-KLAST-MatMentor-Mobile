@@ -6,43 +6,198 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:ExerciseViewModel"
-    Title="Opgave">
+    Title="Opgave"
+    BackgroundColor="{StaticResource Background}">
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="32"
-            Spacing="24">
+            Padding="24,30,24,32"
+            Spacing="20">
 
-            <Label
-                Text="{Binding TopicName}"
-                FontSize="16"
-                HorizontalOptions="Center" />
+            <!-- Exercise header -->
+            <Grid
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="12">
 
-            <Label
-                Text="{Binding ExercisePositionText}"
-                FontSize="24"
-                FontAttributes="Bold"
-                HorizontalOptions="Center" />
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    Spacing="4">
 
-            <Label
-                Text="{Binding ExerciseText}"
-                FontSize="20" />
+                    <Label
+                        Text="{Binding TopicName}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Primary}" />
 
-            <Label
-                Text="Dit svar" />
+                    <Label
+                        Text="Løs opgaven"
+                        FontSize="32"
+                        FontAttributes="Bold"
+                        TextColor="#0E1B4D" />
 
-            <Entry
-                Placeholder="Skriv dit svar"
-                Text="{Binding SubmittedAnswer}" />
+                </VerticalStackLayout>
 
-            <Label
-                Text="{Binding ErrorMessage}"
-                TextColor="Red"
-                FontSize="14" />
+                <!-- Exercise position -->
+                <Border
+                    Grid.Column="1"
+                    BackgroundColor="#EEE9FF"
+                    StrokeThickness="0"
+                    Padding="14,8"
+                    VerticalOptions="Center">
 
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Label
+                        Text="{Binding ExercisePositionText}"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Primary}"
+                        VerticalOptions="Center" />
+
+                </Border>
+
+            </Grid>
+
+            <!-- Exercise card -->
+            <Border
+                BackgroundColor="White"
+                Stroke="#E7E8F2"
+                StrokeThickness="1"
+                Padding="24"
+                Margin="0,6,0,0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="26" />
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="#10000000"
+                        Offset="0,5"
+                        Radius="14"
+                        Opacity="0.15" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="16">
+
+                    <!-- Exercise label -->
+                    <Label
+                        Text="OPGAVEN"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        TextColor="#6F7693" />
+
+                    <!-- Exercise text -->
+                    <Label
+                        Text="{Binding ExerciseText}"
+                        FontSize="20"
+                        LineHeight="1.35"
+                        TextColor="#0E1B4D"
+                        LineBreakMode="WordWrap" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Answer section -->
+            <VerticalStackLayout
+                Spacing="10"
+                Margin="0,4,0,0">
+
+                <Label
+                    Text="Dit svar"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
+
+                <!-- Answer field -->
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="4">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Entry
+                        Placeholder="Skriv dit svar"
+                        PlaceholderColor="#9A9FB2"
+                        Text="{Binding SubmittedAnswer}"
+                        FontSize="17"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent"
+                        Margin="12,4" />
+
+                </Border>
+
+                <!-- Validation message -->
+                <Label
+                    Text="{Binding ErrorMessage}"
+                    TextColor="{StaticResource Error}"
+                    FontSize="14"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+            <!-- Encouragement -->
+            <Border
+                BackgroundColor="#E8F2FF"
+                StrokeThickness="0"
+                Padding="18"
+                Margin="0,2,0,0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <Grid
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="12">
+
+                    <Border
+                        Grid.Column="0"
+                        WidthRequest="42"
+                        HeightRequest="42"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        VerticalOptions="Center">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="21" />
+                        </Border.StrokeShape>
+
+                        <Label
+                            Text="?"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="#3974D9"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+
+                    </Border>
+
+                    <Label
+                        Grid.Column="1"
+                        Text="Læs opgaven roligt igennem, og skriv det svar du kommer frem til."
+                        FontSize="14"
+                        TextColor="#587194"
+                        LineHeight="1.25"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+            </Border>
+
+            <!-- Next exercise button -->
             <Button
                 Text="{Binding NextButtonText}"
-                Command="{Binding NextExerciseCommand}" />
+                Command="{Binding NextExerciseCommand}"
+                FontSize="18"
+                Margin="0,8,0,0" />
 
         </VerticalStackLayout>
     </ScrollView>

@@ -15,10 +15,6 @@ public partial class AppShell : Shell
             typeof(CreateStudentProfilePage));
 
         Routing.RegisterRoute(
-            nameof(StartPage),
-            typeof(StartPage));
-
-        Routing.RegisterRoute(
             nameof(TopicSelectionPage),
             typeof(TopicSelectionPage));
 

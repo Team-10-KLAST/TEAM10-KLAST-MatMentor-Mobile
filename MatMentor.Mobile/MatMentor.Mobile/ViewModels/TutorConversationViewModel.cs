@@ -1,8 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MatMentor.Mobile.Views;
-using System.Collections.ObjectModel;
 
 namespace MatMentor.Mobile.ViewModels;
 
@@ -112,9 +112,6 @@ public class TutorConversationViewModel : INotifyPropertyChanged, IQueryAttribut
 
         StudentMessage = string.Empty;
         ErrorMessage = string.Empty;
-
-        ConversationStatusMessage =
-            "Beskeden er sendt i den lokale prototype. AI er ikke koblet på endnu.";
     }
 
     // Ends the temporary tutor conversation and returns to topic selection.

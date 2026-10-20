@@ -6,92 +6,325 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:CreateStudentProfileViewModel"
-    Title="Opret profil">
+    Title="Opret profil"
+    BackgroundColor="{StaticResource Background}">
 
     <ScrollView>
 
         <VerticalStackLayout
-            Padding="32"
-            Spacing="20">
+            Padding="24,32,24,36"
+            Spacing="22">
 
-            <Label
-                Text="Opret din profil"
-                FontSize="32"
-                FontAttributes="Bold" />
+            <!-- Page header -->
+            <VerticalStackLayout Spacing="7">
 
-            <Label
-                Text="Fortæl lidt om dig, så MatMentor kan tilpasse opgaverne."
-                FontSize="16" />
+                <Label
+                    Text="Opret din profil"
+                    FontSize="34"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
 
-            <Label
-                Text="Brugernavn" />
+                <Label
+                    Text="Fortæl lidt om dig, så MatMentor kan tilpasse opgaverne."
+                    FontSize="17"
+                    TextColor="#6F7693"
+                    LineHeight="1.25" />
 
-            <Entry
-                Placeholder="Skriv dit brugernavn"
-                Text="{Binding Username}" />
+            </VerticalStackLayout>
 
-            <Label
-                Text="Kodeord" />
+            <!-- Username field -->
+            <VerticalStackLayout Spacing="8">
 
-            <Entry
-                Placeholder="Skriv dit kodeord"
-                IsPassword="True"
-                Text="{Binding Password}" />
+                <Label
+                    Text="Brugernavn"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
 
-            <Label
-                Text="Forælders e-mail" />
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="6">
 
-            <Entry
-                Placeholder="navn@eksempel.dk"
-                Keyboard="Email"
-                Text="{Binding ParentEmail}" />
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
 
-            <Label
-                Text="Klassetrin" />
+                    <Entry
+                        Placeholder="Skriv dit brugernavn"
+                        PlaceholderColor="#9A9FB2"
+                        Text="{Binding Username}"
+                        FontSize="16"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent"
+                        Margin="10,2" />
 
-            <Picker
-                Title="Vælg klassetrin"
-                ItemsSource="{Binding Grades}"
-                SelectedItem="{Binding Grade}" />
+                </Border>
 
-            <Label
-                Text="Interesser"
-                 FontAttributes="Bold" />
+            </VerticalStackLayout>
 
-            <Label
-                Text="Du kan vælge flere eller springe over."
-                FontSize="14" />
+            <!-- Password field -->
+            <VerticalStackLayout Spacing="8">
 
-            <HorizontalStackLayout Spacing="12">
+                <Label
+                    Text="Kodeord"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
 
-                <CheckBox
-                IsChecked="{Binding IsFootballSelected}" />
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="6">
 
-            <Label
-                Text="Fodbold"
-                VerticalOptions="Center" />
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
 
-            </HorizontalStackLayout>
+                    <Entry
+                        Placeholder="Skriv dit kodeord"
+                        PlaceholderColor="#9A9FB2"
+                        IsPassword="True"
+                        Text="{Binding Password}"
+                        FontSize="16"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent"
+                        Margin="10,2" />
 
-            <HorizontalStackLayout Spacing="12">
+                </Border>
 
-            <CheckBox
-                IsChecked="{Binding IsRidingSelected}" />
+            </VerticalStackLayout>
 
-            <Label
-                Text="Ridning"
-                VerticalOptions="Center" />
+            <!-- Parent email field -->
+            <VerticalStackLayout Spacing="8">
 
-            </HorizontalStackLayout>
+                <Label
+                    Text="Forælders e-mail"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
 
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="6">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Entry
+                        Placeholder="navn@eksempel.dk"
+                        PlaceholderColor="#9A9FB2"
+                        Keyboard="Email"
+                        Text="{Binding ParentEmail}"
+                        FontSize="16"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent"
+                        Margin="10,2" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Grade selection -->
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="Klassetrin"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
+
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="8,2">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Picker
+                        Title="Vælg klassetrin"
+                        ItemsSource="{Binding Grades}"
+                        SelectedItem="{Binding Grade}"
+                        FontSize="16"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent"
+                        Margin="8,2" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Interests section -->
+            <VerticalStackLayout
+                Spacing="10"
+                Margin="0,4,0,0">
+
+                <Label
+                    Text="Hvad interesserer dig?"
+                    FontSize="22"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
+
+                <Label
+                    Text="Du kan vælge flere interesser eller springe over."
+                    FontSize="15"
+                    TextColor="#6F7693" />
+
+            </VerticalStackLayout>
+
+            <!-- Football interest -->
+            <Border
+                BackgroundColor="#E6F8F2"
+                StrokeThickness="0"
+                Padding="16">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="22" />
+                </Border.StrokeShape>
+
+                <Grid
+                    ColumnDefinitions="Auto,*,Auto"
+                    ColumnSpacing="14">
+
+                    <!-- Interest icon -->
+                    <Border
+                        Grid.Column="0"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        VerticalOptions="Center">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="25" />
+                        </Border.StrokeShape>
+
+                        <Label
+                            Text="⚽"
+                            FontSize="25"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+
+                    </Border>
+
+                    <!-- Interest text -->
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Spacing="2"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Fodbold"
+                            FontSize="17"
+                            FontAttributes="Bold"
+                            TextColor="#0E1B4D" />
+
+                        <Label
+                            Text="Få opgaver med eksempler fra fodbold."
+                            FontSize="14"
+                            TextColor="#527168"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                    <!-- Interest selection -->
+                    <CheckBox
+                        Grid.Column="2"
+                        IsChecked="{Binding IsFootballSelected}"
+                        VerticalOptions="Center"
+                        Color="{StaticResource Tertiary}" />
+
+                </Grid>
+
+            </Border>
+
+            <!-- Riding interest -->
+            <Border
+                BackgroundColor="#FFF0D1"
+                StrokeThickness="0"
+                Padding="16">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="22" />
+                </Border.StrokeShape>
+
+                <Grid
+                    ColumnDefinitions="Auto,*,Auto"
+                    ColumnSpacing="14">
+
+                    <!-- Interest icon -->
+                    <Border
+                        Grid.Column="0"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        VerticalOptions="Center">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="25" />
+                        </Border.StrokeShape>
+
+                        <Label
+                            Text="🐴"
+                            FontSize="25"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+
+                    </Border>
+
+                    <!-- Interest text -->
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Spacing="2"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Ridning"
+                            FontSize="17"
+                            FontAttributes="Bold"
+                            TextColor="#0E1B4D" />
+
+                        <Label
+                            Text="Få opgaver med eksempler fra ridning."
+                            FontSize="14"
+                            TextColor="#7C6845"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                    <!-- Interest selection -->
+                    <CheckBox
+                        Grid.Column="2"
+                        IsChecked="{Binding IsRidingSelected}"
+                        VerticalOptions="Center"
+                        Color="#F59E0B" />
+
+                </Grid>
+
+            </Border>
+
+            <!-- Validation message -->
             <Label
                 Text="{Binding ErrorMessage}"
-                TextColor="Red"
-                FontSize="14" />
+                TextColor="{StaticResource Error}"
+                FontSize="14"
+                LineBreakMode="WordWrap" />
 
+            <!-- Create profile button -->
             <Button
                 Text="Opret profil"
-                Command="{Binding CreateStudentProfileCommand}" />
+                Command="{Binding CreateStudentProfileCommand}"
+                FontSize="18"
+                Margin="0,6,0,0" />
 
         </VerticalStackLayout>
 

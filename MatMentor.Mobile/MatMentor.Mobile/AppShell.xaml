@@ -8,9 +8,16 @@
     FlyoutBehavior="Disabled"
     Title="MatMentor">
 
+    <!-- Welcome root -->
     <ShellContent
         Title="Velkommen"
         ContentTemplate="{DataTemplate views:WelcomePage}"
         Route="WelcomePage" />
+
+    <!-- Logged-in root -->
+    <ShellContent
+        Title="Start"
+        ContentTemplate="{DataTemplate views:StartPage}"
+        Route="StartPage" />
 
 </Shell>

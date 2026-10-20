@@ -35,14 +35,9 @@ public class TopicSelectionViewModel : INotifyPropertyChanged
 
     public ICommand SelectTopicCommand { get; }
 
-    public ICommand LogoutCommand { get; }
-
     public TopicSelectionViewModel()
     {
         SelectTopicCommand = new Command<string>(SelectTopic);
-
-        LogoutCommand = new Command(
-            async () => await LogoutAsync());
     }
 
     // Registers the selected topic and continues to the exercise set.
@@ -62,12 +57,6 @@ public class TopicSelectionViewModel : INotifyPropertyChanged
             {
                 ["topicName"] = topicName
             });
-    }
-
-    // Returns the user to the welcome page and clears the navigation stack.
-    private async Task LogoutAsync()
-    {
-        await Shell.Current.GoToAsync("//WelcomePage");
     }
 
     // Notifies the view when a property value changes.
