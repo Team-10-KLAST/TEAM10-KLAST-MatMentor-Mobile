@@ -97,7 +97,7 @@ public class CreateStudentProfileViewModel : INotifyPropertyChanged
             async () => await ValidateProfileAsync());
     }
 
-    // Validates the required profile input and continues to topic selection.
+    // Validates the required profile input and continues to the start page.
     private async Task ValidateProfileAsync()
     {
         if (string.IsNullOrWhiteSpace(Username))
@@ -120,7 +120,7 @@ public class CreateStudentProfileViewModel : INotifyPropertyChanged
 
         ErrorMessage = string.Empty;
 
-        await Shell.Current.GoToAsync(nameof(TopicSelectionPage));
+        await Shell.Current.GoToAsync(nameof(StartPage));
     }
 
     // Notifies the view when a property value changes.

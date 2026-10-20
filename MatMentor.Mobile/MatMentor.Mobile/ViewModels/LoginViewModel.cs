@@ -51,7 +51,7 @@ public class LoginViewModel : INotifyPropertyChanged
             async () => await LoginAsync());
     }
 
-    // Validates the temporary login input and continues to topic selection.
+    // Validates the temporary login input and continues to the start page.
     private async Task LoginAsync()
     {
         if (string.IsNullOrWhiteSpace(Username))
@@ -68,7 +68,7 @@ public class LoginViewModel : INotifyPropertyChanged
 
         ErrorMessage = string.Empty;
 
-        await Shell.Current.GoToAsync(nameof(TopicSelectionPage));
+        await Shell.Current.GoToAsync(nameof(StartPage));
     }
 
     // Notifies the view when a property value changes.

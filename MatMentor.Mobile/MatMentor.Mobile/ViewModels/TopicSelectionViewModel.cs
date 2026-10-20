@@ -33,17 +33,12 @@ public class TopicSelectionViewModel : INotifyPropertyChanged
         }
     }
 
-    public ICommand OpenTutorCommand { get; }
-
     public ICommand SelectTopicCommand { get; }
 
     public ICommand LogoutCommand { get; }
 
     public TopicSelectionViewModel()
     {
-        OpenTutorCommand = new Command(
-            async () => await Shell.Current.GoToAsync(nameof(TutorPage)));
-
         SelectTopicCommand = new Command<string>(SelectTopic);
 
         LogoutCommand = new Command(
