@@ -1,53 +1,330 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
 <ContentPage
     x:Class="MatMentor.Mobile.Views.TopicSelectionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:TopicSelectionViewModel"
-    Title="Vælg emne">
+    Title="Vælg emne"
+    BackgroundColor="#F7F7FC">
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="32"
-            Spacing="20">
+            Padding="24,34,24,32"
+            Spacing="18">
 
+            <!-- Page heading -->
             <Label
                 Text="Hvad vil du øve?"
-                FontSize="32"
-                FontAttributes="Bold" />
+                FontSize="34"
+                FontAttributes="Bold"
+                TextColor="#0E1B4D"
+                LineBreakMode="WordWrap" />
 
             <Label
                 Text="Vælg et matematikemne."
-                FontSize="16" />
+                FontSize="18"
+                TextColor="#6F7693"
+                Margin="0,-8,0,12" />
 
-            <Button
-                Text="Brøk, decimaltal og procent"
-                Command="{Binding SelectTopicCommand}"
-                CommandParameter="Brøk, decimaltal og procent" />
+            <!-- Topic card: Fractions, decimals and percent -->
+            <Border
+                BackgroundColor="#F1ECFF"
+                StrokeThickness="0"
+                Padding="18"
+                HeightRequest="156"
+                StrokeShape="RoundRectangle 28">
 
-            <Button
-                Text="Handelsregning"
-                Command="{Binding SelectTopicCommand}"
-                CommandParameter="Handelsregning" />
+                <Border.Shadow>
+                    <Shadow
+                        Brush="#12000000"
+                        Offset="0,6"
+                        Radius="14"
+                        Opacity="0.18" />
+                </Border.Shadow>
 
-            <Button
-                Text="Tid"
-                Command="{Binding SelectTopicCommand}"
-                CommandParameter="Tid" />
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding SelectTopicCommand}"
+                        CommandParameter="Brøk, decimaltal og procent" />
+                </Border.GestureRecognizers>
 
-            <Label
-                Text="{Binding SelectionMessage}"
-                FontAttributes="Bold"
-                HorizontalOptions="Center" />
+                <Grid ColumnDefinitions="*,170"
+                      ColumnSpacing="10">
 
-            <Button
-                Text="Log ud"
-                Command="{Binding LogoutCommand}"
-                Margin="0,24,0,0" />
+                    <!-- Left text content -->
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        Spacing="12"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Brøk, decimaltal&#10;og procent"
+                            FontSize="23"
+                            FontAttributes="Bold"
+                            TextColor="#0E1B4D"
+                            LineHeight="1.0" />
+
+                        <Label
+                            Text="Øv med opgaver om brøker, decimaltal og procent, der passer til dig"
+                            FontSize="15"
+                            TextColor="#6F7693"
+                            LineHeight="1.25" />
+                    </VerticalStackLayout>
+
+                    <!-- Right illustration area -->
+                    <Grid
+                        Grid.Column="1"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill">
+
+                        <!-- Soft background shape behind the illustration -->
+                        <Border
+                            BackgroundColor="#E7DFFF"
+                            StrokeThickness="0"
+                            WidthRequest="138"
+                            HeightRequest="104"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            StrokeShape="RoundRectangle 52" />
+
+                        <!-- Topic illustration -->
+                        <Image
+                            Source="topic_fraction_decimal_percent.png"
+                            WidthRequest="120"
+                            HeightRequest="120"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFit"
+                            Margin="0,2,18,0" />
+
+                        <!-- Circular arrow button -->
+                        <Border
+                            BackgroundColor="White"
+                            StrokeThickness="0"
+                            WidthRequest="56"
+                            HeightRequest="56"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            StrokeShape="RoundRectangle 28">
+
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="#18000000"
+                                    Offset="0,4"
+                                    Radius="10"
+                                    Opacity="0.22" />
+                            </Border.Shadow>
+
+                            <Label
+                                Text="›"
+                                FontSize="28"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="#0E1B4D" />
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- Topic card: Commercial arithmetic -->
+            <Border
+                BackgroundColor="#FFF0D1"
+                StrokeThickness="0"
+                Padding="18"
+                HeightRequest="156"
+                StrokeShape="RoundRectangle 28">
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="#12000000"
+                        Offset="0,6"
+                        Radius="14"
+                        Opacity="0.18" />
+                </Border.Shadow>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding SelectTopicCommand}"
+                        CommandParameter="Handelsregning" />
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="*,170"
+                      ColumnSpacing="10">
+
+                    <!-- Left text content -->
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        Spacing="12"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Handelsregning"
+                            FontSize="23"
+                            FontAttributes="Bold"
+                            TextColor="#0E1B4D" />
+
+                        <Label
+                            Text="Øv med opgaver om rabat, moms, pris og procent i hverdagen"
+                            FontSize="15"
+                            TextColor="#6F7693"
+                            LineHeight="1.25" />
+                    </VerticalStackLayout>
+
+                    <!-- Right illustration area -->
+                    <Grid
+                        Grid.Column="1"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill">
+
+                        <!-- Soft background shape behind the illustration -->
+                        <Border
+                            BackgroundColor="#FFE7B3"
+                            StrokeThickness="0"
+                            WidthRequest="138"
+                            HeightRequest="104"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            StrokeShape="RoundRectangle 52" />
+
+                        <!-- Topic illustration -->
+                        <Image
+                            Source="topic_commercial_arithmetic.png"
+                            WidthRequest="120"
+                            HeightRequest="120"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFit"
+                            Margin="0,2,18,0" />
+
+                        <!-- Circular arrow button -->
+                        <Border
+                            BackgroundColor="White"
+                            StrokeThickness="0"
+                            WidthRequest="56"
+                            HeightRequest="56"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            StrokeShape="RoundRectangle 28">
+
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="#18000000"
+                                    Offset="0,4"
+                                    Radius="10"
+                                    Opacity="0.22" />
+                            </Border.Shadow>
+
+                            <Label
+                                Text="›"
+                                FontSize="28"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="#0E1B4D" />
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- Topic card: Time -->
+            <Border
+                BackgroundColor="#E8F2FF"
+                StrokeThickness="0"
+                Padding="18"
+                HeightRequest="156"
+                StrokeShape="RoundRectangle 28">
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="#12000000"
+                        Offset="0,6"
+                        Radius="14"
+                        Opacity="0.18" />
+                </Border.Shadow>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding SelectTopicCommand}"
+                        CommandParameter="Tid" />
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="*,170"
+                      ColumnSpacing="10">
+
+                    <!-- Left text content -->
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        Spacing="12"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Tid"
+                            FontSize="23"
+                            FontAttributes="Bold"
+                            TextColor="#0E1B4D" />
+
+                        <Label
+                            Text="Øv med opgaver om klokkeslæt, tidsrum og omregning af tid"
+                            FontSize="15"
+                            TextColor="#6F7693"
+                            LineHeight="1.25" />
+                    </VerticalStackLayout>
+
+                    <!-- Right illustration area -->
+                    <Grid
+                        Grid.Column="1"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill">
+
+                        <!-- Soft background shape behind the illustration -->
+                        <Border
+                            BackgroundColor="#D8E9FF"
+                            StrokeThickness="0"
+                            WidthRequest="138"
+                            HeightRequest="104"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            StrokeShape="RoundRectangle 52" />
+
+                        <!-- Topic illustration -->
+                        <Image
+                            Source="topic_time.png"
+                            WidthRequest="120"
+                            HeightRequest="120"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFit"
+                            Margin="0,2,18,0" />
+
+                        <!-- Circular arrow button -->
+                        <Border
+                            BackgroundColor="White"
+                            StrokeThickness="0"
+                            WidthRequest="56"
+                            HeightRequest="56"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            StrokeShape="RoundRectangle 28">
+
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="#18000000"
+                                    Offset="0,4"
+                                    Radius="10"
+                                    Opacity="0.22" />
+                            </Border.Shadow>
+
+                            <Label
+                                Text="›"
+                                FontSize="28"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="#0E1B4D" />
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

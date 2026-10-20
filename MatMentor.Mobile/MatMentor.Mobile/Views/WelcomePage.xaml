@@ -6,32 +6,106 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:WelcomeViewModel"
-    Title="Velkommen">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource Background}">
 
-    <VerticalStackLayout
-        Padding="32"
-        Spacing="24"
-        VerticalOptions="Center">
+    <Grid RowDefinitions="*,Auto">
 
-        <Label
-            Text="MatMentor"
-            FontSize="36"
-            FontAttributes="Bold"
-            HorizontalOptions="Center" />
+        <!-- Welcome content -->
+        <ScrollView Grid.Row="0">
 
-        <Label
-            Text="Matematikhjælp, når du har brug for det"
-            FontSize="18"
-            HorizontalTextAlignment="Center" />
+            <VerticalStackLayout
+                Padding="28,55,28,24"
+                Spacing="24">
 
-        <Button
-            Text="Log ind"
-            Command="{Binding LoginCommand}" />
+                <!-- App name -->
+                <Label
+                    Text="MatMentor"
+                    FontSize="38"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D"
+                    HorizontalOptions="Center" />
 
-        <Button
-            Text="Opret profil"
-            Command="{Binding CreateProfileCommand}" />
+                <!-- Hero illustration -->
+                <Grid
+                    HeightRequest="285"
+                    Margin="0,8,0,0">
 
-    </VerticalStackLayout>
+                    <!-- Illustration background -->
+                    <Border
+                        WidthRequest="255"
+                        HeightRequest="255"
+                        BackgroundColor="#E8F2FF"
+                        StrokeThickness="0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="128" />
+                        </Border.StrokeShape>
+
+                    </Border>
+
+                    <!-- Student illustration -->
+                    <Image
+                        Source="start_practice_student.png"
+                        WidthRequest="245"
+                        HeightRequest="245"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit" />
+
+                </Grid>
+
+                <!-- Welcome text -->
+                <VerticalStackLayout
+                    Spacing="10"
+                    Margin="0,-4,0,0">
+
+                    <Label
+                        Text="Matematik bliver lettere, når du får den rigtige hjælp"
+                        FontSize="28"
+                        FontAttributes="Bold"
+                        TextColor="#0E1B4D"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.1" />
+
+                    <Label
+                        Text="Øv matematik eller få hjælp af din AI-tutor, når du sidder fast."
+                        FontSize="17"
+                        TextColor="#6F7693"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.3" />
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+        <!-- Welcome actions -->
+        <VerticalStackLayout
+            Grid.Row="1"
+            Padding="24,10,24,28"
+            Spacing="12"
+            BackgroundColor="{StaticResource Background}">
+
+            <!-- Login button -->
+            <Button
+                Text="Log ind"
+                Command="{Binding LoginCommand}"
+                FontSize="18" />
+
+            <!-- Create profile button -->
+            <Button
+                Text="Opret profil"
+                Command="{Binding CreateProfileCommand}"
+                FontSize="18"
+                BackgroundColor="#EEE9FF"
+                TextColor="{StaticResource Primary}" />
+
+        </VerticalStackLayout>
+
+    </Grid>
 
 </ContentPage>

@@ -6,34 +6,173 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:ExerciseSetCompletionViewModel"
-    Title="Øvesæt færdigt">
+    Title="Øvesæt færdigt"
+    BackgroundColor="{StaticResource Background}">
 
-    <VerticalStackLayout
-        Padding="32"
-        Spacing="24"
-        VerticalOptions="Center">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24,40,24,32"
+            Spacing="24">
 
-        <Label
-            Text="Godt arbejdet!"
-            FontSize="32"
-            FontAttributes="Bold"
-            HorizontalOptions="Center" />
+            <!-- Completion illustration -->
+            <Border
+                WidthRequest="120"
+                HeightRequest="120"
+                BackgroundColor="#E6F8F2"
+                StrokeThickness="0"
+                HorizontalOptions="Center">
 
-        <Label
-            Text="Du har besvaret alle 5 opgaver i:"
-            FontSize="18"
-            HorizontalTextAlignment="Center" />
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="60" />
+                </Border.StrokeShape>
 
-        <Label
-            Text="{Binding TopicName}"
-            FontSize="24"
-            FontAttributes="Bold"
-            HorizontalTextAlignment="Center" />
+                <Label
+                    Text="✓"
+                    FontSize="58"
+                    FontAttributes="Bold"
+                    TextColor="#10B981"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
 
-        <Button
-            Text="Vælg et nyt emne"
-            Command="{Binding ChooseTopicCommand}" />
+            </Border>
 
-    </VerticalStackLayout>
+            <!-- Page header -->
+            <VerticalStackLayout
+                Spacing="8"
+                HorizontalOptions="Fill">
+
+                <Label
+                    Text="Godt arbejdet!"
+                    FontSize="34"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D"
+                    HorizontalTextAlignment="Center" />
+
+                <Label
+                    Text="Du har gennemført hele øvesættet."
+                    FontSize="18"
+                    TextColor="#6F7693"
+                    HorizontalTextAlignment="Center" />
+
+            </VerticalStackLayout>
+
+            <!-- Completed topic card -->
+            <Border
+                BackgroundColor="#F1ECFF"
+                StrokeThickness="0"
+                Padding="24"
+                Margin="0,8,0,0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="28" />
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="#12000000"
+                        Offset="0,6"
+                        Radius="14"
+                        Opacity="0.18" />
+                </Border.Shadow>
+
+                <VerticalStackLayout
+                    Spacing="10"
+                    HorizontalOptions="Fill">
+
+                    <!-- Card label -->
+                    <Label
+                        Text="GENNEMFØRT EMNE"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource Primary}"
+                        HorizontalTextAlignment="Center" />
+
+                    <!-- Completed topic -->
+                    <Label
+                        Text="{Binding TopicName}"
+                        FontSize="26"
+                        FontAttributes="Bold"
+                        TextColor="#0E1B4D"
+                        HorizontalTextAlignment="Center"
+                        LineBreakMode="WordWrap" />
+
+                    <Label
+                        Text="Du har besvaret alle 5 opgaver."
+                        FontSize="16"
+                        TextColor="#6F7693"
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Encouragement card -->
+            <Border
+                BackgroundColor="#FFF0D1"
+                StrokeThickness="0"
+                Padding="20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="22" />
+                </Border.StrokeShape>
+
+                <Grid
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="14">
+
+                    <!-- Decorative icon -->
+                    <Border
+                        Grid.Column="0"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        VerticalOptions="Center">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="24" />
+                        </Border.StrokeShape>
+
+                        <Label
+                            Text="★"
+                            FontSize="22"
+                            TextColor="#F59E0B"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+
+                    </Border>
+
+                    <!-- Encouragement text -->
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Spacing="3"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Flot gennemført"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="#0E1B4D" />
+
+                        <Label
+                            Text="Klar til at øve et andet emne?"
+                            FontSize="14"
+                            TextColor="#7C6845" />
+
+                    </VerticalStackLayout>
+
+                </Grid>
+
+            </Border>
+
+            <!-- Choose another topic button -->
+            <Button
+                Text="Vælg et nyt emne"
+                Command="{Binding ChooseTopicCommand}"
+                FontSize="18"
+                Margin="0,8,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

@@ -6,55 +6,178 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:TutorViewModel"
-    Title="AI-tutor">
+    Title="AI-tutor"
+    BackgroundColor="{StaticResource Background}">
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="32"
+            Padding="24,28,24,32"
             Spacing="20">
 
-            <Label
-                Text="Få hjælp til en opgave"
-                FontSize="32"
-                FontAttributes="Bold" />
+            <!-- Page header -->
+            <VerticalStackLayout Spacing="5">
 
-            <Label
-                Text="Indsæt din matematikopgave og fortæl, hvad du allerede har prøvet."
-                FontSize="16" />
+                <Label
+                    Text="Få hjælp til din opgave"
+                    FontSize="32"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
 
-            <Label
-                Text="Din opgave"
-                FontAttributes="Bold" />
+                <Label
+                    Text="Fortæl tutoren, hvad du arbejder med."
+                    FontSize="18"
+                    TextColor="#6F7693" />
 
-            <Editor
-                Placeholder="Skriv eller indsæt matematikopgaven her"
-                Text="{Binding ExerciseText}"
-                AutoSize="TextChanges"
-                HeightRequest="140" />
+            </VerticalStackLayout>
 
-            <Label
-                Text="Hvad har du allerede prøvet?"
-                FontAttributes="Bold" />
+            <!-- Tutor introduction card -->
+            <Border
+                BackgroundColor="#EEE9FF"
+                StrokeThickness="0"
+                Padding="20">
 
-            <Editor
-                Placeholder="Fortæl hvordan du har forsøgt at løse opgaven"
-                Text="{Binding AttemptText}"
-                AutoSize="TextChanges"
-                HeightRequest="120" />
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="26" />
+                </Border.StrokeShape>
 
+                <Grid
+                    ColumnDefinitions="*,120"
+                    ColumnSpacing="12">
+
+                    <!-- Tutor introduction text -->
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        Spacing="8"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Din AI-tutor"
+                            FontSize="22"
+                            FontAttributes="Bold"
+                            TextColor="#0E1B4D" />
+
+                        <Label
+                            Text="Jeg hjælper dig trin for trin, så du selv kan finde frem til løsningen."
+                            FontSize="15"
+                            TextColor="#625A86"
+                            LineHeight="1.25" />
+
+                    </VerticalStackLayout>
+
+                    <!-- Tutor illustration -->
+                    <Image
+                        Grid.Column="1"
+                        Source="start_tutor_robot.png"
+                        WidthRequest="115"
+                        HeightRequest="115"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit" />
+
+                </Grid>
+
+            </Border>
+
+            <!-- Exercise input section -->
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="Din opgave"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
+
+                <Label
+                    Text="Skriv eller indsæt den matematikopgave, du gerne vil have hjælp til."
+                    FontSize="14"
+                    TextColor="#6F7693" />
+
+                <!-- Exercise text field -->
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="14">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20" />
+                    </Border.StrokeShape>
+
+                    <Editor
+                        Placeholder="Skriv eller indsæt matematikopgaven her"
+                        PlaceholderColor="#9A9FB2"
+                        Text="{Binding ExerciseText}"
+                        AutoSize="TextChanges"
+                        HeightRequest="140"
+                        FontSize="16"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Previous attempt section -->
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="Hvad har du allerede prøvet?"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
+
+                <Label
+                    Text="Fortæl lidt om, hvordan du selv har prøvet at løse opgaven."
+                    FontSize="14"
+                    TextColor="#6F7693" />
+
+                <!-- Previous attempt field -->
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="14">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20" />
+                    </Border.StrokeShape>
+
+                    <Editor
+                        Placeholder="Fx: Jeg prøvede at gange tallene..."
+                        PlaceholderColor="#9A9FB2"
+                        Text="{Binding AttemptText}"
+                        AutoSize="TextChanges"
+                        HeightRequest="120"
+                        FontSize="16"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Validation message -->
             <Label
                 Text="{Binding ErrorMessage}"
-                TextColor="Red"
-                FontSize="14" />
+                TextColor="{StaticResource Error}"
+                FontSize="14"
+                LineBreakMode="WordWrap" />
 
+            <!-- Tutor status -->
             <Label
                 Text="{Binding StatusMessage}"
+                FontSize="14"
                 FontAttributes="Bold"
-                FontSize="14" />
+                TextColor="{StaticResource Primary}"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap" />
 
+            <!-- Start tutor button -->
             <Button
                 Text="Start hjælp"
-                Command="{Binding StartTutorCommand}" />
+                Command="{Binding StartTutorCommand}"
+                FontSize="18"
+                Margin="0,6,0,0" />
 
         </VerticalStackLayout>
     </ScrollView>

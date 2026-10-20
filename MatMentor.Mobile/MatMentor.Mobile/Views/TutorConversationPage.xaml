@@ -6,114 +6,296 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:TutorConversationViewModel"
-    Title="AI-tutor">
+    Title="AI-tutor"
+    BackgroundColor="{StaticResource Background}">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="24"
-            Spacing="18">
+    <Grid RowDefinitions="*,Auto">
 
-            <Label
-                Text="Din opgave"
-                FontSize="20"
-                FontAttributes="Bold" />
-
-            <Border Padding="16">
-                <Label
-                    Text="{Binding ExerciseText}"
-                    FontSize="16" />
-            </Border>
-
-            <Label
-                Text="Det har du allerede prøvet"
-                FontSize="18"
-                FontAttributes="Bold" />
-
-            <Border Padding="16">
-                <Label
-                    Text="{Binding AttemptText}"
-                    FontSize="16" />
-            </Border>
-
-            <Label
-                Text="AI-tutor"
-                FontSize="18"
-                FontAttributes="Bold" />
-
-            <Border Padding="16">
-                <Label
-                    Text="AI-tutorens vejledning vises her, når AI-integrationen er koblet på."
-                    FontSize="16" />
-            </Border>
-
-            <Label
-                Text="Din besked"
-                FontSize="18"
-                FontAttributes="Bold" />
-
-            <Label
-                Text="Samtale"
-                FontSize="18"
-                FontAttributes="Bold" />
-
-            <Label
-                Text="AI-tutorens svar kommer også til at blive vist her, når AI-integrationen er koblet på."
-                FontSize="14"
-                FontAttributes="Italic" />
+        <!-- Conversation content -->
+        <ScrollView Grid.Row="0">
 
             <VerticalStackLayout
-                BindableLayout.ItemsSource="{Binding Messages}"
-                Spacing="12">
+                Padding="20,24,20,20"
+                Spacing="18">
 
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="viewModels:TutorMessageViewModel">
+                <!-- Page header -->
+                <VerticalStackLayout Spacing="5">
 
-                        <Border Padding="12">
+                    <Label
+                        Text="Lad os løse den sammen"
+                        FontSize="30"
+                        FontAttributes="Bold"
+                        TextColor="#0E1B4D" />
 
+                </VerticalStackLayout>
+
+                <!-- Exercise summary card -->
+                <Border
+                    BackgroundColor="#EEE9FF"
+                    StrokeThickness="0"
+                    Padding="18">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24" />
+                    </Border.StrokeShape>
+
+                    <Grid
+                        ColumnDefinitions="*,90"
+                        ColumnSpacing="12">
+
+                        <!-- Exercise information -->
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            Spacing="14">
+
+                            <!-- Exercise -->
                             <VerticalStackLayout Spacing="4">
 
                                 <Label
-                                    Text="{Binding Sender}"
-                                    FontAttributes="Bold" />
+                                    Text="DIN OPGAVE"
+                                    FontSize="12"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource Primary}" />
 
                                 <Label
-                                    Text="{Binding Text}" />
+                                    Text="{Binding ExerciseText}"
+                                    FontSize="16"
+                                    TextColor="#0E1B4D"
+                                    LineHeight="1.25"
+                                    LineBreakMode="WordWrap" />
 
                             </VerticalStackLayout>
 
-                        </Border>
+                            <!-- Previous attempt -->
+                            <VerticalStackLayout Spacing="4">
 
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
+                                <Label
+                                    Text="DET HAR DU PRØVET"
+                                    FontSize="12"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource Primary}" />
+
+                                <Label
+                                    Text="{Binding AttemptText}"
+                                    FontSize="15"
+                                    TextColor="#625A86"
+                                    LineHeight="1.25"
+                                    LineBreakMode="WordWrap" />
+
+                            </VerticalStackLayout>
+
+                        </VerticalStackLayout>
+
+                        <!-- Tutor illustration -->
+                        <Image
+                            Grid.Column="1"
+                            Source="start_tutor_robot.png"
+                            WidthRequest="88"
+                            HeightRequest="88"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFit" />
+
+                    </Grid>
+
+                </Border>
+
+                <!-- Conversation heading -->
+                <Grid
+                    ColumnDefinitions="*,Auto"
+                    Margin="0,4,0,0">
+
+                    <Label
+                        Grid.Column="0"
+                        Text="Samtale"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        TextColor="#0E1B4D"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+                <!-- Conversation messages -->
+                <VerticalStackLayout
+                    BindableLayout.ItemsSource="{Binding Messages}"
+                    Spacing="12">
+
+                    <BindableLayout.ItemTemplate>
+
+                        <DataTemplate x:DataType="viewModels:TutorMessageViewModel">
+
+                            <!-- Message bubble -->
+                            <Border
+                                BackgroundColor="#EEE9FF"
+                                StrokeThickness="0"
+                                Padding="14"
+                                HorizontalOptions="Start"
+                                MaximumWidthRequest="360">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20" />
+                                </Border.StrokeShape>
+
+                                <!-- Student message styling -->
+                                <Border.Triggers>
+
+                                    <DataTrigger
+                                        TargetType="Border"
+                                        Binding="{Binding Sender}"
+                                        Value="Dig">
+
+                                        <Setter
+                                            Property="BackgroundColor"
+                                            Value="{StaticResource Primary}" />
+
+                                        <Setter
+                                            Property="HorizontalOptions"
+                                            Value="End" />
+
+                                    </DataTrigger>
+
+                                </Border.Triggers>
+
+                                <VerticalStackLayout Spacing="5">
+
+                                    <!-- Message sender -->
+                                    <Label
+                                        Text="{Binding Sender}"
+                                        FontSize="12"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource Primary}">
+
+                                        <Label.Triggers>
+
+                                            <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding Sender}"
+                                                Value="Dig">
+
+                                                <Setter
+                                                    Property="TextColor"
+                                                    Value="#DED5FF" />
+
+                                            </DataTrigger>
+
+                                        </Label.Triggers>
+
+                                    </Label>
+
+                                    <!-- Message content -->
+                                    <Label
+                                        Text="{Binding Text}"
+                                        FontSize="16"
+                                        TextColor="#0E1B4D"
+                                        LineHeight="1.3"
+                                        LineBreakMode="WordWrap">
+
+                                        <Label.Triggers>
+
+                                            <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding Sender}"
+                                                Value="Dig">
+
+                                                <Setter
+                                                    Property="TextColor"
+                                                    Value="White" />
+
+                                            </DataTrigger>
+
+                                        </Label.Triggers>
+
+                                    </Label>
+
+                                </VerticalStackLayout>
+
+                            </Border>
+
+                        </DataTemplate>
+
+                    </BindableLayout.ItemTemplate>
+
+                </VerticalStackLayout>
+
+                <!-- Conversation status -->
+                <Label
+                    Text="{Binding ConversationStatusMessage}"
+                    FontSize="14"
+                    FontAttributes="Italic"
+                    TextColor="#6F7693"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="WordWrap" />
+
+                <!-- Validation message -->
+                <Label
+                    Text="{Binding ErrorMessage}"
+                    TextColor="{StaticResource Error}"
+                    FontSize="14"
+                    LineBreakMode="WordWrap" />
+
+                <!-- End conversation button -->
+                <Button
+                    Text="Afslut samtale"
+                    Command="{Binding EndConversationCommand}"
+                    BackgroundColor="#EEE9FF"
+                    TextColor="{StaticResource Primary}"
+                    Margin="0,8,0,12" />
 
             </VerticalStackLayout>
 
-            <Editor
-                Placeholder="Skriv dit svar, din mellemregning eller dit spørgsmål"
-                Text="{Binding StudentMessage}"
-                AutoSize="TextChanges"
-                HeightRequest="100" />
+        </ScrollView>
 
-            <Label
-                Text="{Binding ErrorMessage}"
-                TextColor="Red"
-                FontSize="14" />
+        <!-- Message composer -->
+        <Border
+            Grid.Row="1"
+            BackgroundColor="White"
+            Stroke="#E7E8F2"
+            StrokeThickness="1"
+            Padding="14,12,14,16">
 
-            <Button
-                Text="Send"
-                Command="{Binding SendMessageCommand}" />
+            <Grid
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
 
-            <Label
-                Text="{Binding ConversationStatusMessage}"
-                FontSize="14"
-                FontAttributes="Italic" />
+                <!-- Student message field -->
+                <Border
+                    Grid.Column="0"
+                    BackgroundColor="#F7F7FC"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="10,4">
 
-            <Button
-                Text="Afslut samtale"
-                Command="{Binding EndConversationCommand}"
-                Margin="0,24,0,0" />
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
 
-        </VerticalStackLayout>
-    </ScrollView>
+                    <Editor
+                        Placeholder="Skriv dit svar eller spørgsmål..."
+                        PlaceholderColor="#9A9FB2"
+                        Text="{Binding StudentMessage}"
+                        AutoSize="TextChanges"
+                        HeightRequest="70"
+                        FontSize="15"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="Center" />
+
+                </Border>
+
+                <!-- Send button -->
+                <Button
+                    Grid.Column="1"
+                    Text="Send"
+                    Command="{Binding SendMessageCommand}"
+                    WidthRequest="82"
+                    HeightRequest="52"
+                    Padding="10"
+                    VerticalOptions="Center" />
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
 
 </ContentPage>

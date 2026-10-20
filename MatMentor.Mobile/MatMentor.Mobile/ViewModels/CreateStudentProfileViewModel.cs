@@ -120,7 +120,7 @@ public class CreateStudentProfileViewModel : INotifyPropertyChanged
 
         ErrorMessage = string.Empty;
 
-        await Shell.Current.GoToAsync(nameof(StartPage));
+        await Shell.Current.GoToAsync("//StartPage");
     }
 
     // Notifies the view when a property value changes.

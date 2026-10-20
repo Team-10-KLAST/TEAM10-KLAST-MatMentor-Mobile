@@ -6,43 +6,159 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:LoginViewModel"
-    Title="Log ind">
+    Title="Log ind"
+    BackgroundColor="{StaticResource Background}">
 
-    <VerticalStackLayout
-        Padding="32"
-        Spacing="20"
-        VerticalOptions="Center">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24,36,24,32"
+            Spacing="24">
 
-        <Label
-            Text="Log ind"
-            FontSize="32"
-            FontAttributes="Bold"
-            HorizontalOptions="Center" />
+            <!-- Page header -->
+            <VerticalStackLayout Spacing="8">
 
-        <Label
-            Text="Brugernavn" />
+                <Label
+                    Text="Velkommen tilbage"
+                    FontSize="34"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
 
-        <Entry
-            Placeholder="Skriv dit brugernavn"
-            Text="{Binding Username}" />
+                <Label
+                    Text="Log ind og fortsæt, hvor du slap."
+                    FontSize="18"
+                    TextColor="#6F7693" />
 
-        <Label
-            Text="Kodeord" />
+            </VerticalStackLayout>
 
-        <Entry
-            Placeholder="Skriv dit kodeord"
-            IsPassword="True"
-            Text="{Binding Password}" />
+            <!-- Login illustration -->
+            <Border
+                BackgroundColor="#EEE9FF"
+                StrokeThickness="0"
+                Padding="18"
+                Margin="0,4,0,4">
 
-        <Label
-            Text="{Binding ErrorMessage}"
-            TextColor="Red"
-            FontSize="14" />
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="26" />
+                </Border.StrokeShape>
 
-        <Button
-            Text="Log ind"
-            Command="{Binding LoginCommand}" />
+                <Grid
+                    ColumnDefinitions="*,110"
+                    ColumnSpacing="12">
 
-    </VerticalStackLayout>
+                    <!-- Welcome text -->
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        Spacing="6"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Klar til mere matematik?"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="#0E1B4D" />
+
+                        <Label
+                            Text="Dine øvesæt og din AI-tutor venter på dig."
+                            FontSize="15"
+                            TextColor="#625A86"
+                            LineHeight="1.25" />
+
+                    </VerticalStackLayout>
+
+                    <!-- Student illustration -->
+                    <Image
+                        Grid.Column="1"
+                        Source="start_practice_student.png"
+                        WidthRequest="105"
+                        HeightRequest="105"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Aspect="AspectFit" />
+
+                </Grid>
+
+            </Border>
+
+            <!-- Username field -->
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="Brugernavn"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
+
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="6">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Entry
+                        Placeholder="Skriv dit brugernavn"
+                        PlaceholderColor="#9A9FB2"
+                        Text="{Binding Username}"
+                        FontSize="16"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent"
+                        Margin="10,2" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Password field -->
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="Kodeord"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    TextColor="#0E1B4D" />
+
+                <Border
+                    BackgroundColor="White"
+                    Stroke="#D9DCE8"
+                    StrokeThickness="1"
+                    Padding="6">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="18" />
+                    </Border.StrokeShape>
+
+                    <Entry
+                        Placeholder="Skriv dit kodeord"
+                        PlaceholderColor="#9A9FB2"
+                        IsPassword="True"
+                        Text="{Binding Password}"
+                        FontSize="16"
+                        TextColor="#0E1B4D"
+                        BackgroundColor="Transparent"
+                        Margin="10,2" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Validation message -->
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="{StaticResource Error}"
+                FontSize="14"
+                LineBreakMode="WordWrap" />
+
+            <!-- Login button -->
+            <Button
+                Text="Log ind"
+                Command="{Binding LoginCommand}"
+                FontSize="18"
+                Margin="0,4,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

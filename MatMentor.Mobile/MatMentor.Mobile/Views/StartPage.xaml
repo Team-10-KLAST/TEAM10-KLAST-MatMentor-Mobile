@@ -1,72 +1,244 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage
     x:Class="MatMentor.Mobile.Views.StartPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:StartViewModel"
+    BackgroundColor="{StaticResource Background}"
     Title="Start">
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="30"
-            Spacing="22">
+            Padding="24,28,24,24"
+            Spacing="18">
 
-            <Label
-                Text="Hej igen"
-                FontSize="32"
-                FontAttributes="Bold" />
+            <!-- Page header -->
+            <VerticalStackLayout Spacing="4">
 
-            <Label
-                Text="Hvad skal vi lave i dag?"
-                FontSize="20"
-                Margin="0,-15,0,15" />
+                <Label
+                    Text="Hej igen"
+                    FontSize="34"
+                    FontAttributes="Bold"
+                    TextColor="#0B1B4A" />
 
+                <Label
+                    Text="Hvad skal vi lave i dag?"
+                    FontSize="18"
+                    TextColor="#6E7393" />
+
+            </VerticalStackLayout>
+
+            <!-- Practice card -->
             <Border
-                Padding="24"
-                BackgroundColor="#20A57A"
-                StrokeThickness="0">
+                StrokeThickness="0"
+                HeightRequest="190"
+                BackgroundColor="#22C08A"
+                Padding="0"
+                Margin="0,10,0,0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="26" />
+                </Border.StrokeShape>
 
                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding PracticeCommand}" />
+                    <TapGestureRecognizer
+                        Command="{Binding PracticeCommand}" />
                 </Border.GestureRecognizers>
 
-                <VerticalStackLayout Spacing="10">
-                    <Label
-                        Text="Øv dig"
-                        TextColor="White"
-                        FontSize="27"
-                        FontAttributes="Bold" />
+                <Grid
+                    Padding="22,18,18,18"
+                    ColumnDefinitions="1.15*,0.95*"
+                    ColumnSpacing="8">
 
-                    <Label
-                        Text="Vælg et emne og få opgaver, der passer til dig"
-                        TextColor="White"
-                        FontSize="18" />
-                </VerticalStackLayout>
+                    <!-- Practice card text -->
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        Spacing="10"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Øv dig"
+                            FontSize="30"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Label
+                            Text="Vælg et emne og få opgaver, der passer til dig"
+                            FontSize="17"
+                            LineHeight="1.2"
+                            TextColor="White" />
+
+                    </VerticalStackLayout>
+
+                    <!-- Practice illustration -->
+                    <Grid Grid.Column="1">
+
+                        <!-- Illustration background -->
+                        <Border
+                            WidthRequest="120"
+                            HeightRequest="120"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            BackgroundColor="#59D9B0"
+                            Opacity="0.45"
+                            StrokeThickness="0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="60" />
+                            </Border.StrokeShape>
+
+                        </Border>
+
+                        <Image
+                            Source="start_practice_student.png"
+                            HeightRequest="142"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFit"
+                            Margin="0,4,0,0" />
+
+                        <!-- Navigation arrow -->
+                        <Border
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            BackgroundColor="White"
+                            StrokeThickness="0"
+                            HorizontalOptions="End"
+                            VerticalOptions="End"
+                            Margin="0,0,0,6">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25" />
+                            </Border.StrokeShape>
+
+                            <Label
+                                Text="›"
+                                FontSize="34"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="#18214D" />
+
+                        </Border>
+
+                    </Grid>
+
+                </Grid>
+
             </Border>
 
+            <!-- Tutor card -->
             <Border
-                Padding="24"
-                BackgroundColor="#5B4FC4"
-                StrokeThickness="0">
+                StrokeThickness="0"
+                HeightRequest="205"
+                BackgroundColor="#6B46F6"
+                Padding="0"
+                Margin="0,6,0,0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="26" />
+                </Border.StrokeShape>
 
                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding TutorCommand}" />
+                    <TapGestureRecognizer
+                        Command="{Binding TutorCommand}" />
                 </Border.GestureRecognizers>
 
-                <VerticalStackLayout Spacing="10">
-                    <Label
-                        Text="Få hjælp til lektier"
-                        TextColor="White"
-                        FontSize="27"
-                        FontAttributes="Bold" />
+                <Grid
+                    Padding="22,18,18,18"
+                    ColumnDefinitions="1.15*,0.95*"
+                    ColumnSpacing="8">
 
-                    <Label
-                        Text="Skriv din egen opgave ind, så hjælper tutoren dig videre"
-                        TextColor="White"
-                        FontSize="18" />
-                </VerticalStackLayout>
+                    <!-- Tutor card text -->
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        Spacing="10"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Få hjælp&#10;til lektier"
+                            FontSize="29"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            LineHeight="1.0" />
+
+                        <Label
+                            Text="Skriv din egen opgave ind, så hjælper tutoren dig videre"
+                            FontSize="16"
+                            LineHeight="1.2"
+                            TextColor="White" />
+
+                    </VerticalStackLayout>
+
+                    <!-- Tutor illustration -->
+                    <Grid Grid.Column="1">
+
+                        <!-- Illustration background -->
+                        <Border
+                            WidthRequest="126"
+                            HeightRequest="126"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            BackgroundColor="#8E72FF"
+                            Opacity="0.38"
+                            StrokeThickness="0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="63" />
+                            </Border.StrokeShape>
+
+                        </Border>
+
+                        <Image
+                            Source="start_tutor_robot.png"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFit"
+                            Margin="0,8,0,0" />
+
+                        <!-- Navigation arrow -->
+                        <Border
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            BackgroundColor="White"
+                            StrokeThickness="0"
+                            HorizontalOptions="End"
+                            VerticalOptions="End"
+                            Margin="0,0,0,6">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="25" />
+                            </Border.StrokeShape>
+
+                            <Label
+                                Text="›"
+                                FontSize="34"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="#18214D" />
+
+                        </Border>
+
+                    </Grid>
+
+                </Grid>
+
             </Border>
+
+            <!-- Logout button -->
+            <Button
+                Text="Log ud"
+                Command="{Binding LogoutCommand}"
+                BackgroundColor="White"
+                TextColor="#6E7393"
+                BorderColor="#E1E3EC"
+                BorderWidth="1"
+                CornerRadius="18"
+                FontSize="16"
+                HeightRequest="52"
+                Margin="0,100,0,0" />
 
         </VerticalStackLayout>
     </ScrollView>
