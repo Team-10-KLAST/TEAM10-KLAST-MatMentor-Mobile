@@ -9,6 +9,11 @@
     Title="Øvesæt færdigt"
     BackgroundColor="{StaticResource Background}">
 
+    <!-- Hides back navigation after the exercise set is completed -->
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
     <ScrollView>
         <VerticalStackLayout
             Padding="24,40,24,32"

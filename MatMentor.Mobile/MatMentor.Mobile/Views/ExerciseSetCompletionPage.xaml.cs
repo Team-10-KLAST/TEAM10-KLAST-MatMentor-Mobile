@@ -9,4 +9,10 @@ public partial class ExerciseSetCompletionPage : ContentPage
         InitializeComponent();
         BindingContext = new ExerciseSetCompletionViewModel();
     }
+
+    // Prevents returning to an exercise after the exercise set has been completed.
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
+    }
 }

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using MatMentor.Mobile.Views;
 
 namespace MatMentor.Mobile.ViewModels;
 
@@ -26,16 +25,23 @@ public class ExerciseSetCompletionViewModel : INotifyPropertyChanged, IQueryAttr
     public ExerciseSetCompletionViewModel()
     {
         ChooseTopicCommand = new Command(
-            async () => await Shell.Current.GoToAsync(nameof(TopicSelectionPage)));
+            async () => await ChooseTopicAsync());
     }
 
-    // Receives the topic that was completed.
+    // Receives the completed topic name.
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (query.TryGetValue("topicName", out var topicName))
         {
             TopicName = topicName?.ToString() ?? string.Empty;
         }
+    }
+
+    // Goes back to the existing topic selection page
+    // instead of opening a brand new one.
+    private async Task ChooseTopicAsync()
+    {
+        await Shell.Current.GoToAsync("../../..");
     }
 
     // Notifies the view when a property value changes.

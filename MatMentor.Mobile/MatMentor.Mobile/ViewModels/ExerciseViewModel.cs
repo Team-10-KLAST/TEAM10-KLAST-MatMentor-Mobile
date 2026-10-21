@@ -72,10 +72,15 @@ public class ExerciseViewModel : INotifyPropertyChanged, IQueryAttributable
 
     public ICommand NextExerciseCommand { get; }
 
+    public ICommand PreviousExerciseCommand { get; }
+
     public ExerciseViewModel()
     {
         NextExerciseCommand = new Command(
             async () => await GoToNextExerciseAsync());
+
+        PreviousExerciseCommand = new Command(
+            async () => await GoToPreviousExerciseAsync());
     }
 
     // Receives the selected topic and prepares the exercise set.
@@ -100,10 +105,13 @@ public class ExerciseViewModel : INotifyPropertyChanged, IQueryAttributable
         List<string> exercises =
             ExercisePrototypeData.GetExercises(TopicName);
 
-        _exerciseTexts.AddRange(exercises);
+        foreach (string exercise in exercises)
+        {
+            _exerciseTexts.Add(exercise);
+            _submittedAnswers.Add(string.Empty);
+        }
 
         _currentExerciseIndex = 0;
-        SubmittedAnswer = string.Empty;
         ErrorMessage = string.Empty;
 
         UpdateCurrentExercise();
@@ -118,14 +126,7 @@ public class ExerciseViewModel : INotifyPropertyChanged, IQueryAttributable
             return;
         }
 
-        if (_submittedAnswers.Count > _currentExerciseIndex)
-        {
-            _submittedAnswers[_currentExerciseIndex] = SubmittedAnswer.Trim();
-        }
-        else
-        {
-            _submittedAnswers.Add(SubmittedAnswer.Trim());
-        }
+        SaveCurrentAnswer();
 
         ErrorMessage = string.Empty;
 
@@ -143,21 +144,45 @@ public class ExerciseViewModel : INotifyPropertyChanged, IQueryAttributable
 
         _currentExerciseIndex++;
 
-        SubmittedAnswer = string.Empty;
+        UpdateCurrentExercise();
+    }
+
+    // Moves to the previous exercise or leaves the exercise page when the student is on the first exercise.
+    private async Task GoToPreviousExerciseAsync()
+    {
+        if (_currentExerciseIndex == 0)
+        {
+            await Shell.Current.GoToAsync("..");
+            return;
+        }
+
+        SaveCurrentAnswer();
+
+        _currentExerciseIndex--;
+        ErrorMessage = string.Empty;
 
         UpdateCurrentExercise();
     }
 
-    // Updates the exercise displayed to the student.
+    // Stores the answer for the currently displayed exercise.
+    private void SaveCurrentAnswer()
+    {
+        _submittedAnswers[_currentExerciseIndex] =
+            SubmittedAnswer.Trim();
+    }
+
+    // Updates the exercise and previously entered answer displayed to the student.
     private void UpdateCurrentExercise()
     {
         if (_exerciseTexts.Count == 0)
         {
             ExerciseText = string.Empty;
+            SubmittedAnswer = string.Empty;
             return;
         }
 
         ExerciseText = _exerciseTexts[_currentExerciseIndex];
+        SubmittedAnswer = _submittedAnswers[_currentExerciseIndex];
 
         OnPropertyChanged(nameof(ExercisePositionText));
         OnPropertyChanged(nameof(NextButtonText));
