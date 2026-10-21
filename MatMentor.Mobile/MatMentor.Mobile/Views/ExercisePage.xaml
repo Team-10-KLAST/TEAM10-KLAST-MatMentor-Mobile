@@ -9,7 +9,14 @@
     Title="Opgave"
     BackgroundColor="{StaticResource Background}">
 
+    <!-- Makes the Shell back arrow navigate between exercises first -->
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior
+            Command="{Binding PreviousExerciseCommand}" />
+    </Shell.BackButtonBehavior>
+
     <ScrollView>
+
         <VerticalStackLayout
             Padding="24,30,24,32"
             Spacing="20">
@@ -200,6 +207,7 @@
                 Margin="0,8,0,0" />
 
         </VerticalStackLayout>
+
     </ScrollView>
 
 </ContentPage>
