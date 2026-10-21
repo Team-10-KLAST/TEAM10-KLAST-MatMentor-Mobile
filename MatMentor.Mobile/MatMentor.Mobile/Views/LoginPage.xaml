@@ -7,158 +7,284 @@
     xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
     x:DataType="viewModels:LoginViewModel"
     Title="Log ind"
-    BackgroundColor="{StaticResource Background}">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#EAF7FF">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="24,36,24,32"
-            Spacing="24">
+    <Grid>
 
-            <!-- Page header -->
-            <VerticalStackLayout Spacing="8">
+        <!-- Background landscape -->
+        <Image
+            Source="start_background.png"
+            Aspect="AspectFill"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill" />
 
-                <Label
-                    Text="Velkommen tilbage"
-                    FontSize="34"
-                    FontAttributes="Bold"
-                    TextColor="#0E1B4D" />
+        <!-- Soft overlay -->
+        <BoxView
+            BackgroundColor="#8AF3FAFF" />
 
-                <Label
-                    Text="Log ind og fortsæt, hvor du slap."
-                    FontSize="18"
-                    TextColor="#6F7693" />
+        <ScrollView>
 
-            </VerticalStackLayout>
+            <VerticalStackLayout
+                Padding="28,46,28,28"
+                Spacing="14">
 
-            <!-- Login illustration -->
-            <Border
-                BackgroundColor="#EEE9FF"
-                StrokeThickness="0"
-                Padding="18"
-                Margin="0,4,0,4">
+                <!-- Header -->
+                <VerticalStackLayout
+                    Spacing="3"
+                    HorizontalOptions="Center">
 
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="26" />
-                </Border.StrokeShape>
+                    <Label
+                        Text="Velkommen tilbage!"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="27"
+                        TextColor="#101A42"
+                        HorizontalTextAlignment="Center" />
 
-                <Grid
-                    ColumnDefinitions="*,110"
-                    ColumnSpacing="12">
+                    <Label
+                        Text="Log ind på din rejse."
+                        FontFamily="OpenSansRegular"
+                        FontSize="15"
+                        TextColor="#4F5875"
+                        HorizontalTextAlignment="Center" />
 
-                    <!-- Welcome text -->
-                    <VerticalStackLayout
-                        Grid.Column="0"
-                        Spacing="6"
-                        VerticalOptions="Center">
+                </VerticalStackLayout>
 
+                <!-- Avatar -->
+                <Border
+                    WidthRequest="108"
+                    HeightRequest="108"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#FFE29A"
+                    Stroke="#E9C45F"
+                    StrokeThickness="1.5"
+                    Padding="6"
+                    Margin="0,6,0,2">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="54" />
+                    </Border.StrokeShape>
+
+                    <Image
+                        Source="start_practice_student.png"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        Aspect="AspectFit" />
+
+                </Border>
+
+                <!-- Login card -->
+                <Border
+                    BackgroundColor="#EFFFFFFF"
+                    Stroke="#CFE1E8"
+                    StrokeThickness="1"
+                    Padding="14">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="22" />
+                    </Border.StrokeShape>
+
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="#30000000"
+                            Offset="0,4"
+                            Radius="8"
+                            Opacity="0.20" />
+                    </Border.Shadow>
+
+                    <VerticalStackLayout Spacing="10">
+
+                        <!-- Username field -->
+                        <Border
+                            BackgroundColor="#FFFDF6"
+                            Stroke="#DDD6C5"
+                            StrokeThickness="1"
+                            HeightRequest="58"
+                            Padding="12,2">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+
+                            <Grid
+                                ColumnDefinitions="34,*,30"
+                                ColumnSpacing="6">
+
+                                <!-- User icon -->
+                                <Grid
+                                    Grid.Column="0"
+                                    WidthRequest="22"
+                                    HeightRequest="22"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+
+                                    <Path
+                                        Data="M12,11 C14.2,11 16,9.2 16,7 C16,4.8 14.2,3 12,3 C9.8,3 8,4.8 8,7 C8,9.2 9.8,11 12,11 M5,21 C5,16.8 7.8,14 12,14 C16.2,14 19,16.8 19,21"
+                                        Stroke="#626B8B"
+                                        StrokeThickness="1.8"
+                                        StrokeLineCap="Round"
+                                        StrokeLineJoin="Round"
+                                        Fill="Transparent"
+                                        Aspect="Uniform" />
+
+                                </Grid>
+
+                                <!-- Username -->
+                                <Entry
+                                    Grid.Column="1"
+                                    Text="{Binding Username}"
+                                    Placeholder="Brugernavn"
+                                    PlaceholderColor="#5D647E"
+                                    TextColor="#17213C"
+                                    FontFamily="OpenSansRegular"
+                                    FontSize="15"
+                                    BackgroundColor="Transparent"
+                                    ClearButtonVisibility="Never"
+                                    VerticalOptions="Center"
+                                    ReturnType="Next" />
+
+                                <!-- Chevron icon -->
+                                <Grid
+                                    Grid.Column="2"
+                                    WidthRequest="20"
+                                    HeightRequest="20"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+
+                                    <Path
+                                        Data="M7,4 L15,12 L7,20"
+                                        Stroke="#8790AC"
+                                        StrokeThickness="2.6"
+                                        StrokeLineCap="Round"
+                                        StrokeLineJoin="Round"
+                                        Fill="Transparent"
+                                        Aspect="Uniform" />
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- Password field -->
+                        <Border
+                            BackgroundColor="#FFFDF6"
+                            Stroke="#DDD6C5"
+                            StrokeThickness="1"
+                            HeightRequest="58"
+                            Padding="12,2">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="14" />
+                            </Border.StrokeShape>
+
+                            <Grid
+                                ColumnDefinitions="34,*,30"
+                                ColumnSpacing="6">
+
+                                <!-- Lock icon -->
+                                <Grid
+                                    Grid.Column="0"
+                                    WidthRequest="22"
+                                    HeightRequest="22"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+
+                                    <Path
+                                        Data="M7,10 L7,7 C7,4.2 9.2,2 12,2 C14.8,2 17,4.2 17,7 L17,10 M6,10 L18,10 C19.1,10 20,10.9 20,12 L20,20 C20,21.1 19.1,22 18,22 L6,22 C4.9,22 4,21.1 4,20 L4,12 C4,10.9 4.9,10 6,10"
+                                        Stroke="#626B8B"
+                                        StrokeThickness="1.8"
+                                        StrokeLineCap="Round"
+                                        StrokeLineJoin="Round"
+                                        Fill="Transparent"
+                                        Aspect="Uniform" />
+
+                                    <Path
+                                        Data="M12,14 L12,18"
+                                        Stroke="#626B8B"
+                                        StrokeThickness="1.8"
+                                        StrokeLineCap="Round"
+                                        Fill="Transparent"
+                                        Aspect="Uniform" />
+
+                                </Grid>
+
+                                <!-- Password -->
+                                <Entry
+                                    Grid.Column="1"
+                                    Text="{Binding Password}"
+                                    Placeholder="Kodeord"
+                                    PlaceholderColor="#5D647E"
+                                    TextColor="#17213C"
+                                    FontFamily="OpenSansRegular"
+                                    FontSize="15"
+                                    BackgroundColor="Transparent"
+                                    IsPassword="True"
+                                    VerticalOptions="Center"
+                                    ReturnType="Done" />
+
+                                <!-- Eye icon -->
+                                <Grid
+                                    Grid.Column="2"
+                                    WidthRequest="22"
+                                    HeightRequest="22"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+
+                                    <Path
+                                        Data="M2,12 C4.5,7.8 7.8,6 12,6 C16.2,6 19.5,7.8 22,12 C19.5,16.2 16.2,18 12,18 C7.8,18 4.5,16.2 2,12"
+                                        Stroke="#8790AC"
+                                        StrokeThickness="1.7"
+                                        StrokeLineCap="Round"
+                                        StrokeLineJoin="Round"
+                                        Fill="Transparent"
+                                        Aspect="Uniform" />
+
+                                    <Ellipse
+                                        WidthRequest="6"
+                                        HeightRequest="6"
+                                        Stroke="#8790AC"
+                                        StrokeThickness="1.7"
+                                        Fill="Transparent"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center" />
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- Validation -->
                         <Label
-                            Text="Klar til mere matematik?"
-                            FontSize="20"
-                            FontAttributes="Bold"
-                            TextColor="#0E1B4D" />
+                            Text="{Binding ErrorMessage}"
+                            FontFamily="OpenSansRegular"
+                            FontSize="13"
+                            TextColor="{StaticResource Error}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
 
-                        <Label
-                            Text="Dine øvesæt og din AI-tutor venter på dig."
-                            FontSize="15"
-                            TextColor="#625A86"
-                            LineHeight="1.25" />
+                        <!-- Login button -->
+                        <Button
+                            Text="Log ind"
+                            Command="{Binding LoginCommand}"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            FontFamily="OpenSansSemibold"
+                            FontSize="17"
+                            HeightRequest="54"
+                            CornerRadius="14"
+                            Padding="12"
+                            Margin="0,2,0,0" />
 
                     </VerticalStackLayout>
 
-                    <!-- Student illustration -->
-                    <Image
-                        Grid.Column="1"
-                        Source="start_practice_student.png"
-                        WidthRequest="105"
-                        HeightRequest="105"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Aspect="AspectFit" />
-
-                </Grid>
-
-            </Border>
-
-            <!-- Username field -->
-            <VerticalStackLayout Spacing="8">
-
-                <Label
-                    Text="Brugernavn"
-                    FontSize="17"
-                    FontAttributes="Bold"
-                    TextColor="#0E1B4D" />
-
-                <Border
-                    BackgroundColor="White"
-                    Stroke="#D9DCE8"
-                    StrokeThickness="1"
-                    Padding="6">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="18" />
-                    </Border.StrokeShape>
-
-                    <Entry
-                        Placeholder="Skriv dit brugernavn"
-                        PlaceholderColor="#9A9FB2"
-                        Text="{Binding Username}"
-                        FontSize="16"
-                        TextColor="#0E1B4D"
-                        BackgroundColor="Transparent"
-                        Margin="10,2" />
-
                 </Border>
 
             </VerticalStackLayout>
 
-            <!-- Password field -->
-            <VerticalStackLayout Spacing="8">
+        </ScrollView>
 
-                <Label
-                    Text="Kodeord"
-                    FontSize="17"
-                    FontAttributes="Bold"
-                    TextColor="#0E1B4D" />
-
-                <Border
-                    BackgroundColor="White"
-                    Stroke="#D9DCE8"
-                    StrokeThickness="1"
-                    Padding="6">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="18" />
-                    </Border.StrokeShape>
-
-                    <Entry
-                        Placeholder="Skriv dit kodeord"
-                        PlaceholderColor="#9A9FB2"
-                        IsPassword="True"
-                        Text="{Binding Password}"
-                        FontSize="16"
-                        TextColor="#0E1B4D"
-                        BackgroundColor="Transparent"
-                        Margin="10,2" />
-
-                </Border>
-
-            </VerticalStackLayout>
-
-            <!-- Validation message -->
-            <Label
-                Text="{Binding ErrorMessage}"
-                TextColor="{StaticResource Error}"
-                FontSize="14"
-                LineBreakMode="WordWrap" />
-
-            <!-- Login button -->
-            <Button
-                Text="Log ind"
-                Command="{Binding LoginCommand}"
-                FontSize="18"
-                Margin="0,4,0,0" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+    </Grid>
 
 </ContentPage>
