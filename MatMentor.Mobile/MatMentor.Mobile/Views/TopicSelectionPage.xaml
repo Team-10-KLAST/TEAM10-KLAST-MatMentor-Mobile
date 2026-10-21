@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage
     x:Class="MatMentor.Mobile.Views.TopicSelectionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -9,38 +10,48 @@
     BackgroundColor="#F7F7FC">
 
     <ScrollView>
+
         <VerticalStackLayout
-            Padding="24,34,24,32"
-            Spacing="18">
+            Padding="28,34,28,34"
+            Spacing="20">
 
             <!-- Page heading -->
-            <Label
-                Text="Hvad vil du øve?"
-                FontSize="34"
-                FontAttributes="Bold"
-                TextColor="#0E1B4D"
-                LineBreakMode="WordWrap" />
+            <VerticalStackLayout
+                Spacing="8"
+                Margin="0,0,0,12">
 
-            <Label
-                Text="Vælg et matematikemne."
-                FontSize="18"
-                TextColor="#6F7693"
-                Margin="0,-8,0,12" />
+                <Label
+                    Text="Hvad vil du øve?"
+                    FontFamily="OpenSansSemibold"
+                    FontSize="31"
+                    TextColor="#0E1B4D"
+                    LineBreakMode="NoWrap" />
 
-            <!-- Topic card: Fractions, decimals and percent -->
+                <Label
+                    Text="Vælg et matematikemne."
+                    FontFamily="OpenSansRegular"
+                    FontSize="17"
+                    TextColor="#777E9B" />
+
+            </VerticalStackLayout>
+
+            <!-- Fraction, decimal and percent -->
             <Border
                 BackgroundColor="#F1ECFF"
                 StrokeThickness="0"
-                Padding="18"
-                HeightRequest="156"
-                StrokeShape="RoundRectangle 28">
+                HeightRequest="190"
+                Padding="22,20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="28" />
+                </Border.StrokeShape>
 
                 <Border.Shadow>
                     <Shadow
-                        Brush="#12000000"
-                        Offset="0,6"
-                        Radius="14"
-                        Opacity="0.18" />
+                        Brush="#18000000"
+                        Offset="0,4"
+                        Radius="10"
+                        Opacity="0.20" />
                 </Border.Shadow>
 
                 <Border.GestureRecognizers>
@@ -49,98 +60,93 @@
                         CommandParameter="Brøk, decimaltal og procent" />
                 </Border.GestureRecognizers>
 
-                <Grid ColumnDefinitions="*,170"
-                      ColumnSpacing="10">
+                <Grid
+                    ColumnDefinitions="1.25*,0.75*"
+                    ColumnSpacing="10">
 
-                    <!-- Left text content -->
+                    <!-- Text -->
                     <VerticalStackLayout
                         Grid.Column="0"
-                        Spacing="12"
+                        Spacing="10"
                         VerticalOptions="Center">
 
                         <Label
                             Text="Brøk, decimaltal&#10;og procent"
-                            FontSize="23"
-                            FontAttributes="Bold"
+                            FontFamily="OpenSansSemibold"
+                            FontSize="25"
                             TextColor="#0E1B4D"
-                            LineHeight="1.0" />
+                            LineHeight="1.05"
+                            LineBreakMode="NoWrap" />
 
                         <Label
-                            Text="Øv med opgaver om brøker, decimaltal og procent, der passer til dig"
+                            Text="Øv med opgaver om brøker, decimaltal og procent."
+                            FontFamily="OpenSansRegular"
                             FontSize="15"
-                            TextColor="#6F7693"
-                            LineHeight="1.25" />
+                            TextColor="#777E9B"
+                            LineHeight="1.25"
+                            LineBreakMode="WordWrap"
+                            MaxLines="3" />
+
                     </VerticalStackLayout>
 
-                    <!-- Right illustration area -->
+                    <!-- Illustration and arrow -->
                     <Grid
-                        Grid.Column="1"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill">
+                        Grid.Column="1">
 
-                        <!-- Soft background shape behind the illustration -->
-                        <Border
-                            BackgroundColor="#E7DFFF"
-                            StrokeThickness="0"
-                            WidthRequest="138"
-                            HeightRequest="104"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            StrokeShape="RoundRectangle 52" />
-
-                        <!-- Topic illustration -->
                         <Image
                             Source="topic_fraction_decimal_percent.png"
-                            WidthRequest="120"
-                            HeightRequest="120"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
+                            WidthRequest="145"
+                            HeightRequest="145"
                             Aspect="AspectFit"
-                            Margin="0,2,18,0" />
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
 
-                        <!-- Circular arrow button -->
                         <Border
+                            WidthRequest="48"
+                            HeightRequest="48"
                             BackgroundColor="White"
                             StrokeThickness="0"
-                            WidthRequest="56"
-                            HeightRequest="56"
                             HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            StrokeShape="RoundRectangle 28">
+                            VerticalOptions="Center">
 
-                            <Border.Shadow>
-                                <Shadow
-                                    Brush="#18000000"
-                                    Offset="0,4"
-                                    Radius="10"
-                                    Opacity="0.22" />
-                            </Border.Shadow>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="24" />
+                            </Border.StrokeShape>
 
                             <Label
                                 Text="›"
+                                FontFamily="OpenSansSemibold"
                                 FontSize="28"
+                                TextColor="#0E1B4D"
                                 HorizontalOptions="Center"
                                 VerticalOptions="Center"
-                                TextColor="#0E1B4D" />
+                                Margin="0,-3,0,0" />
+
                         </Border>
+
                     </Grid>
+
                 </Grid>
+
             </Border>
 
-            <!-- Topic card: Commercial arithmetic -->
+            <!-- Commercial arithmetic -->
             <Border
                 BackgroundColor="#FFF0D1"
                 StrokeThickness="0"
-                Padding="18"
-                HeightRequest="156"
-                StrokeShape="RoundRectangle 28">
+                HeightRequest="190"
+                Padding="22,20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="28" />
+                </Border.StrokeShape>
 
                 <Border.Shadow>
                     <Shadow
-                        Brush="#12000000"
-                        Offset="0,6"
-                        Radius="14"
-                        Opacity="0.18" />
+                        Brush="#18000000"
+                        Offset="0,4"
+                        Radius="10"
+                        Opacity="0.20" />
                 </Border.Shadow>
 
                 <Border.GestureRecognizers>
@@ -149,97 +155,93 @@
                         CommandParameter="Handelsregning" />
                 </Border.GestureRecognizers>
 
-                <Grid ColumnDefinitions="*,170"
-                      ColumnSpacing="10">
+                <Grid
+                    ColumnDefinitions="1.25*,0.75*"
+                    ColumnSpacing="10">
 
-                    <!-- Left text content -->
+                    <!-- Text -->
                     <VerticalStackLayout
                         Grid.Column="0"
-                        Spacing="12"
+                        Spacing="10"
                         VerticalOptions="Center">
 
                         <Label
                             Text="Handelsregning"
-                            FontSize="23"
-                            FontAttributes="Bold"
-                            TextColor="#0E1B4D" />
+                            FontFamily="OpenSansSemibold"
+                            FontSize="24"
+                            TextColor="#0E1B4D"
+                            LineBreakMode="NoWrap"
+                            MaxLines="1" />
 
                         <Label
-                            Text="Øv med opgaver om rabat, moms, pris og procent i hverdagen"
+                            Text="Øv med opgaver om rabat, moms, pris og penge."
+                            FontFamily="OpenSansRegular"
                             FontSize="15"
-                            TextColor="#6F7693"
-                            LineHeight="1.25" />
+                            TextColor="#777E9B"
+                            LineHeight="1.25"
+                            LineBreakMode="WordWrap"
+                            MaxLines="3" />
+
                     </VerticalStackLayout>
 
-                    <!-- Right illustration area -->
+                    <!-- Illustration and arrow -->
                     <Grid
-                        Grid.Column="1"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill">
+                        Grid.Column="1">
 
-                        <!-- Soft background shape behind the illustration -->
-                        <Border
-                            BackgroundColor="#FFE7B3"
-                            StrokeThickness="0"
-                            WidthRequest="138"
-                            HeightRequest="104"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            StrokeShape="RoundRectangle 52" />
-
-                        <!-- Topic illustration -->
                         <Image
                             Source="topic_commercial_arithmetic.png"
-                            WidthRequest="120"
-                            HeightRequest="120"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
+                            WidthRequest="145"
+                            HeightRequest="145"
                             Aspect="AspectFit"
-                            Margin="0,2,18,0" />
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
 
-                        <!-- Circular arrow button -->
                         <Border
+                            WidthRequest="48"
+                            HeightRequest="48"
                             BackgroundColor="White"
                             StrokeThickness="0"
-                            WidthRequest="56"
-                            HeightRequest="56"
                             HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            StrokeShape="RoundRectangle 28">
+                            VerticalOptions="Center">
 
-                            <Border.Shadow>
-                                <Shadow
-                                    Brush="#18000000"
-                                    Offset="0,4"
-                                    Radius="10"
-                                    Opacity="0.22" />
-                            </Border.Shadow>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="24" />
+                            </Border.StrokeShape>
 
                             <Label
                                 Text="›"
+                                FontFamily="OpenSansSemibold"
                                 FontSize="28"
+                                TextColor="#0E1B4D"
                                 HorizontalOptions="Center"
                                 VerticalOptions="Center"
-                                TextColor="#0E1B4D" />
+                                Margin="0,-3,0,0" />
+
                         </Border>
+
                     </Grid>
+
                 </Grid>
+
             </Border>
 
-            <!-- Topic card: Time -->
+            <!-- Time -->
             <Border
                 BackgroundColor="#E8F2FF"
                 StrokeThickness="0"
-                Padding="18"
-                HeightRequest="156"
-                StrokeShape="RoundRectangle 28">
+                HeightRequest="190"
+                Padding="22,20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="28" />
+                </Border.StrokeShape>
 
                 <Border.Shadow>
                     <Shadow
-                        Brush="#12000000"
-                        Offset="0,6"
-                        Radius="14"
-                        Opacity="0.18" />
+                        Brush="#18000000"
+                        Offset="0,4"
+                        Radius="10"
+                        Opacity="0.20" />
                 </Border.Shadow>
 
                 <Border.GestureRecognizers>
@@ -248,83 +250,77 @@
                         CommandParameter="Tid" />
                 </Border.GestureRecognizers>
 
-                <Grid ColumnDefinitions="*,170"
-                      ColumnSpacing="10">
+                <Grid
+                    ColumnDefinitions="1.25*,0.75*"
+                    ColumnSpacing="10">
 
-                    <!-- Left text content -->
+                    <!-- Text -->
                     <VerticalStackLayout
                         Grid.Column="0"
-                        Spacing="12"
+                        Spacing="10"
                         VerticalOptions="Center">
 
                         <Label
                             Text="Tid"
-                            FontSize="23"
-                            FontAttributes="Bold"
-                            TextColor="#0E1B4D" />
+                            FontFamily="OpenSansSemibold"
+                            FontSize="25"
+                            TextColor="#0E1B4D"
+                            LineBreakMode="NoWrap" />
 
                         <Label
-                            Text="Øv med opgaver om klokkeslæt, tidsrum og omregning af tid"
+                            Text="Øv med opgaver om klokkeslæt, tidsrum og omregning af tid."
+                            FontFamily="OpenSansRegular"
                             FontSize="15"
-                            TextColor="#6F7693"
-                            LineHeight="1.25" />
+                            TextColor="#777E9B"
+                            LineHeight="1.25"
+                            LineBreakMode="WordWrap"
+                            MaxLines="3" />
+
                     </VerticalStackLayout>
 
-                    <!-- Right illustration area -->
+                    <!-- Illustration and arrow -->
                     <Grid
-                        Grid.Column="1"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill">
+                        Grid.Column="1">
 
-                        <!-- Soft background shape behind the illustration -->
-                        <Border
-                            BackgroundColor="#D8E9FF"
-                            StrokeThickness="0"
-                            WidthRequest="138"
-                            HeightRequest="104"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            StrokeShape="RoundRectangle 52" />
-
-                        <!-- Topic illustration -->
                         <Image
                             Source="topic_time.png"
-                            WidthRequest="120"
-                            HeightRequest="120"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
+                            WidthRequest="145"
+                            HeightRequest="145"
                             Aspect="AspectFit"
-                            Margin="0,2,18,0" />
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
 
-                        <!-- Circular arrow button -->
                         <Border
+                            WidthRequest="48"
+                            HeightRequest="48"
                             BackgroundColor="White"
                             StrokeThickness="0"
-                            WidthRequest="56"
-                            HeightRequest="56"
                             HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            StrokeShape="RoundRectangle 28">
+                            VerticalOptions="Center">
 
-                            <Border.Shadow>
-                                <Shadow
-                                    Brush="#18000000"
-                                    Offset="0,4"
-                                    Radius="10"
-                                    Opacity="0.22" />
-                            </Border.Shadow>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="24" />
+                            </Border.StrokeShape>
 
                             <Label
                                 Text="›"
+                                FontFamily="OpenSansSemibold"
                                 FontSize="28"
+                                TextColor="#0E1B4D"
                                 HorizontalOptions="Center"
                                 VerticalOptions="Center"
-                                TextColor="#0E1B4D" />
+                                Margin="0,-3,0,0" />
+
                         </Border>
+
                     </Grid>
+
                 </Grid>
+
             </Border>
 
         </VerticalStackLayout>
+
     </ScrollView>
+
 </ContentPage>
