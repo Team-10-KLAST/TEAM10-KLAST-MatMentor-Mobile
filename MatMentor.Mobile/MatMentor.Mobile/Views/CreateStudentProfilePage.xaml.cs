@@ -1,12 +1,14 @@
+
 using MatMentor.Mobile.ViewModels;
 
 namespace MatMentor.Mobile.Views;
 
 public partial class CreateStudentProfilePage : ContentPage
 {
-    public CreateStudentProfilePage()
+    public CreateStudentProfilePage(
+        CreateStudentProfileViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = new CreateStudentProfileViewModel();
+        BindingContext = viewModel;
     }
 }

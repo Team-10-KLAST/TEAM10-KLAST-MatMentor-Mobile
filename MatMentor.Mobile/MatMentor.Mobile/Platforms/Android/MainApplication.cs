@@ -1,9 +1,14 @@
-﻿using Android.App;
+﻿
+using Android.App;
 using Android.Runtime;
 
 namespace MatMentor.Mobile
 {
+#if DEBUG
+    [Application(UsesCleartextTraffic = true)]
+#else
     [Application]
+#endif
     public class MainApplication : MauiApplication
     {
         public MainApplication(IntPtr handle, JniHandleOwnership ownership)

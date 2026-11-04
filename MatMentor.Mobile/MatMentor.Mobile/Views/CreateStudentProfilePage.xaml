@@ -320,11 +320,48 @@
                 LineBreakMode="WordWrap" />
 
             <!-- Create profile button -->
+
             <Button
                 Text="Opret profil"
                 Command="{Binding CreateStudentProfileCommand}"
                 FontSize="18"
-                Margin="0,6,0,0" />
+                Margin="0,6,0,0">
+
+                <Button.Triggers>
+                    <DataTrigger
+                        TargetType="Button"
+                        Binding="{Binding IsCreatingProfile}"
+                        Value="True">
+
+                        <Setter
+                            Property="IsEnabled"
+                            Value="False" />
+
+                    </DataTrigger>
+                </Button.Triggers>
+
+            </Button>
+
+            <!-- Profile creation progress -->
+            <HorizontalStackLayout
+                HorizontalOptions="Center"
+                Spacing="10"
+                IsVisible="{Binding IsCreatingProfile}">
+
+                <ActivityIndicator
+                    IsRunning="{Binding IsCreatingProfile}"
+                    Color="#0E1B4D"
+                    WidthRequest="24"
+                    HeightRequest="24" />
+
+                <Label
+                    Text="Opretter din profil..."
+                    TextColor="#0E1B4D"
+                    FontSize="15"
+                    VerticalOptions="Center" />
+
+            </HorizontalStackLayout>
+
 
         </VerticalStackLayout>
 
