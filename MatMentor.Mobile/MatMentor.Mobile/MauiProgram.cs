@@ -1,5 +1,4 @@
-﻿
-using MatMentor.Mobile.Views;
+﻿using MatMentor.Mobile.Views;
 using MatMentor.Mobile.ViewModels;
 using MatMentor.Mobile.Services;
 using Microsoft.Extensions.Logging;
@@ -31,6 +30,13 @@ namespace MatMentor.Mobile
 #error Configure the HTTPS API address before building Release.
 #endif
 
+            builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);
+            builder.Services.AddSingleton<AuthSessionService>();
+            builder.Services.AddTransient<LoginApiService>();
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<StartViewModel>();
+            builder.Services.AddTransient<StartPage>();
 
             builder.Services.AddTransient<CreateStudentProfileApiService>();
             builder.Services.AddTransient<CreateStudentProfileViewModel>();

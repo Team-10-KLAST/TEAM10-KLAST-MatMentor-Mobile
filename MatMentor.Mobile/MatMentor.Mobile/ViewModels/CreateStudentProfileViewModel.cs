@@ -6,6 +6,7 @@ using System.Windows.Input;
 using MatMentor.Mobile.Models;
 using MatMentor.Mobile.Services;
 using System.Net;
+using MatMentor.Mobile.Views;
 using System.Net.Mail;
 
 namespace MatMentor.Mobile.ViewModels;
@@ -171,13 +172,13 @@ public class CreateStudentProfileViewModel : INotifyPropertyChanged
             interestIds
         );
 
-        _isCreatingProfile = true;
+        IsCreatingProfile = true;
 
         try
         {
             await _apiService.CreateAsync(request);
 
-            await Shell.Current.GoToAsync("//StartPage");
+            await Shell.Current.GoToAsync(nameof(LoginPage));
         }
 
         catch (CreateStudentProfileValidationException ex)
@@ -224,7 +225,7 @@ public class CreateStudentProfileViewModel : INotifyPropertyChanged
 
         finally
         {
-            _isCreatingProfile = false;
+            IsCreatingProfile = false;
         }
     }
 
