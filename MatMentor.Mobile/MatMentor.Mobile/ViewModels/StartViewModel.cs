@@ -1,18 +1,24 @@
-﻿using System.Windows.Input;
+﻿
+using System.Windows.Input;
+using MatMentor.Mobile.Services;
 using MatMentor.Mobile.Views;
 
 namespace MatMentor.Mobile.ViewModels;
 
 public class StartViewModel
 {
+    private readonly AuthSessionService _authSessionService;
+
     public ICommand PracticeCommand { get; }
 
     public ICommand TutorCommand { get; }
 
     public ICommand LogoutCommand { get; }
 
-    public StartViewModel()
+    public StartViewModel(AuthSessionService authSessionService)
     {
+        _authSessionService = authSessionService;
+
         PracticeCommand = new Command(async () =>
             await Shell.Current.GoToAsync(nameof(TopicSelectionPage)));
 
@@ -23,9 +29,11 @@ public class StartViewModel
             async () => await LogoutAsync());
     }
 
-    // Returns the user to the welcome page and clears the navigation stack.
+    // Removes the stored authentication token and returns to the welcome page.
     private async Task LogoutAsync()
     {
+        _authSessionService.ClearToken();
+
         await Shell.Current.GoToAsync("//WelcomePage");
     }
 }

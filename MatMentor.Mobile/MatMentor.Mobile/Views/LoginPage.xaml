@@ -265,6 +265,7 @@
                             LineBreakMode="WordWrap" />
 
                         <!-- Login button -->
+
                         <Button
                             Text="Log ind"
                             Command="{Binding LoginCommand}"
@@ -275,7 +276,25 @@
                             HeightRequest="54"
                             CornerRadius="14"
                             Padding="12"
-                            Margin="0,2,0,0" />
+                            Margin="0,2,0,0">
+
+                            <Button.Triggers>
+                                <DataTrigger
+                                    TargetType="Button"
+                                    Binding="{Binding IsLoggingIn}"
+                                    Value="True">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Button.Triggers>
+
+                        </Button>
+
+                        <ActivityIndicator
+                            IsRunning="{Binding IsLoggingIn}"
+                            IsVisible="{Binding IsLoggingIn}"
+                            Color="{StaticResource Primary}"
+                            HorizontalOptions="Center" />
+
 
                     </VerticalStackLayout>
 
