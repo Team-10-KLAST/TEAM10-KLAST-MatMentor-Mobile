@@ -4,11 +4,12 @@ namespace MatMentor.Mobile.Views;
 
 public partial class TutorConversationPage : ContentPage
 {
-    public TutorConversationPage()
+    private readonly TutorConversationViewModel _viewModel;
+
+    public TutorConversationPage(TutorConversationViewModel viewModel)
     {
         InitializeComponent();
-
-        var viewModel = new TutorConversationViewModel();
+        _viewModel = viewModel;
         BindingContext = viewModel;
 
         viewModel.Messages.CollectionChanged += (_, _) =>
@@ -19,23 +20,27 @@ public partial class TutorConversationPage : ContentPage
             }
 
             var lastMessage = viewModel.Messages[^1];
-
-            Dispatcher.Dispatch(async () =>
+            Dispatcher.Dispatch(() =>
             {
-                await Task.Delay(250);
-
-                ConversationCollectionView.ScrollTo(
-                    lastMessage,
-                    position: ScrollToPosition.End,
-                    animate: false);
-
-                await Task.Delay(150);
-
                 ConversationCollectionView.ScrollTo(
                     lastMessage,
                     position: ScrollToPosition.End,
                     animate: false);
             });
         };
+    }
+
+    // Requests the initial tutor response when the page becomes visible.
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _viewModel.ActivateConversation();
+    }
+
+    // Makes leaving the page end the conversation even when Android back is used.
+    protected override void OnDisappearing()
+    {
+        _viewModel.CloseConversation();
+        base.OnDisappearing();
     }
 }
