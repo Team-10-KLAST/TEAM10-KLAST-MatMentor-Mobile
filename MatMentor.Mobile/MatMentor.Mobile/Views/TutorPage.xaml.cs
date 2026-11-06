@@ -4,9 +4,9 @@ namespace MatMentor.Mobile.Views;
 
 public partial class TutorPage : ContentPage
 {
-    public TutorPage()
+    public TutorPage(TutorViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = new TutorViewModel();
+        BindingContext = viewModel;
     }
 }

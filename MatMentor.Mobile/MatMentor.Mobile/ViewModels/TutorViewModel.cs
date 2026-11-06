@@ -79,16 +79,25 @@ public class TutorViewModel : INotifyPropertyChanged
             return;
         }
 
+        if (ExerciseText.Length > 4000 || AttemptText.Length > 2000)
+        {
+            ErrorMessage = "Opgaven eller dit første forsøg er for langt. Prøv at forkorte teksten.";
+            StatusMessage = string.Empty;
+            return;
+        }
+
         ErrorMessage = string.Empty;
         StatusMessage = string.Empty;
 
-        var encodedExerciseText = Uri.EscapeDataString(ExerciseText);
-        var encodedAttemptText = Uri.EscapeDataString(AttemptText);
+        var parameters = new ShellNavigationQueryParameters
+        {
+            { "exerciseText", ExerciseText.Trim() },
+            { "attemptText", AttemptText.Trim() }
+        };
 
-        await Shell.Current.GoToAsync(
-            $"{nameof(TutorConversationPage)}" +
-            $"?exerciseText={encodedExerciseText}" +
-            $"&attemptText={encodedAttemptText}");
+        await Shell.Current.GoToAsync(nameof(TutorConversationPage), parameters);
+        ExerciseText = string.Empty;
+        AttemptText = string.Empty;
     }
 
     // Notifies the view when a property value changes.

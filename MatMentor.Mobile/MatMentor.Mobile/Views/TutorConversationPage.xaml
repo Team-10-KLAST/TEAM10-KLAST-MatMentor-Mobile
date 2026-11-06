@@ -242,6 +242,18 @@
                         HorizontalTextAlignment="Center"
                         LineBreakMode="WordWrap" />
 
+                    <ActivityIndicator
+                        IsVisible="{Binding IsBusy}"
+                        IsRunning="{Binding IsBusy}"
+                        Color="{StaticResource Primary}"
+                        HorizontalOptions="Center" />
+
+                    <Button
+                        Text="Prøv igen"
+                        Command="{Binding RetryInitialCommand}"
+                        IsVisible="{Binding ShowRetry}"
+                        HorizontalOptions="Center" />
+
                     <!-- Validation message -->
                     <Label
                         Text="{Binding ErrorMessage}"
@@ -283,6 +295,7 @@
                         Placeholder="Skriv dit svar eller spørgsmål..."
                         PlaceholderColor="#9A9FB2"
                         Text="{Binding StudentMessage}"
+                        IsEnabled="{Binding CanSendMessage}"
                         AutoSize="TextChanges"
                         HeightRequest="70"
                         FontSize="15"
@@ -297,6 +310,7 @@
                     Grid.Column="1"
                     Text="Send"
                     Command="{Binding SendMessageCommand}"
+                    IsEnabled="{Binding CanSendMessage}"
                     WidthRequest="82"
                     HeightRequest="52"
                     Padding="10"

@@ -42,6 +42,12 @@ namespace MatMentor.Mobile
             builder.Services.AddTransient<CreateStudentProfileViewModel>();
             builder.Services.AddTransient<CreateStudentProfilePage>();
 
+            builder.Services.AddTransient<ITutorChatService, BackendTutorChatService>();
+            builder.Services.AddTransient<TutorViewModel>();
+            builder.Services.AddTransient<TutorPage>();
+            builder.Services.AddTransient<TutorConversationViewModel>();
+            builder.Services.AddTransient<TutorConversationPage>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
