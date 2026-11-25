@@ -1,213 +1,155 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="MatMentor.Mobile.Views.ExercisePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+             x:DataType="viewModels:ExerciseViewModel"
+             Title="{Binding PageTitle}"
+             BackgroundColor="#F8FAFF">
 
-<ContentPage
-    x:Class="MatMentor.Mobile.Views.ExercisePage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
-    x:DataType="viewModels:ExerciseViewModel"
-    Title="Opgave"
-    BackgroundColor="{StaticResource Background}">
-
-    <!-- Makes the Shell back arrow navigate between exercises first -->
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior
-            Command="{Binding PreviousExerciseCommand}" />
+        <BackButtonBehavior Command="{Binding LeaveExerciseCommand}" />
     </Shell.BackButtonBehavior>
 
-    <ScrollView>
+    <Grid>
+        <!-- Mission briefing before exercise one, keeping the same attempt. -->
+        <ScrollView IsVisible="{Binding IsIntroVisible}">
+            <VerticalStackLayout Padding="22,26,22,36" Spacing="18">
+                <Label Text="DIN MISSION" TextColor="{Binding MissionAccentColor}"
+                       FontAttributes="Bold" FontSize="13" />
+                <Label Text="{Binding ExerciseSetTitle}" TextColor="#0E1B4D"
+                       FontAttributes="Bold" FontSize="29" LineBreakMode="WordWrap" />
 
-        <VerticalStackLayout
-            Padding="24,30,24,32"
-            Spacing="20">
-
-            <!-- Exercise header -->
-            <Grid
-                ColumnDefinitions="*,Auto"
-                ColumnSpacing="12">
-
-                <VerticalStackLayout
-                    Grid.Column="0"
-                    Spacing="4">
-
-                    <Label
-                        Text="{Binding TopicName}"
-                        FontSize="16"
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource Primary}" />
-
-                    <Label
-                        Text="Løs opgaven"
-                        FontSize="32"
-                        FontAttributes="Bold"
-                        TextColor="#0E1B4D" />
-
-                </VerticalStackLayout>
-
-                <!-- Exercise position -->
-                <Border
-                    Grid.Column="1"
-                    BackgroundColor="#EEE9FF"
-                    StrokeThickness="0"
-                    Padding="14,8"
-                    VerticalOptions="Center">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="18" />
-                    </Border.StrokeShape>
-
-                    <Label
-                        Text="{Binding ExercisePositionText}"
-                        FontSize="14"
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource Primary}"
-                        VerticalOptions="Center" />
-
+                <Border IsVisible="{Binding HasMissionImage}" HeightRequest="205" StrokeThickness="0" BackgroundColor="{Binding MissionSoftColor}">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="24" /></Border.StrokeShape>
+                    <Image Source="{Binding MissionImageSource}" Aspect="AspectFill" HeightRequest="205"
+                           SemanticProperties.Description="Illustration til øvesættets mission" />
                 </Border>
 
-            </Grid>
+                <Label Text="{Binding MissionCategoryText}" TextColor="{Binding MissionAccentColor}"
+                       FontSize="13" FontAttributes="Bold" />
+                <Label Text="{Binding MissionIntro}" TextColor="#0E1B4D"
+                       FontSize="17" LineHeight="1.25" LineBreakMode="WordWrap" />
 
-            <!-- Exercise card -->
-            <Border
-                BackgroundColor="White"
-                Stroke="#E7E8F2"
-                StrokeThickness="1"
-                Padding="24"
-                Margin="0,6,0,0">
-
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="26" />
-                </Border.StrokeShape>
-
-                <Border.Shadow>
-                    <Shadow
-                        Brush="#10000000"
-                        Offset="0,5"
-                        Radius="14"
-                        Opacity="0.15" />
-                </Border.Shadow>
-
-                <VerticalStackLayout Spacing="16">
-
-                    <!-- Exercise label -->
-                    <Label
-                        Text="OPGAVEN"
-                        FontSize="13"
-                        FontAttributes="Bold"
-                        TextColor="#6F7693" />
-
-                    <!-- Exercise text -->
-                    <Label
-                        Text="{Binding ExerciseText}"
-                        FontSize="20"
-                        LineHeight="1.35"
-                        TextColor="#0E1B4D"
-                        LineBreakMode="WordWrap" />
-
-                </VerticalStackLayout>
-
-            </Border>
-
-            <!-- Answer section -->
-            <VerticalStackLayout
-                Spacing="10"
-                Margin="0,4,0,0">
-
-                <Label
-                    Text="Dit svar"
-                    FontSize="18"
-                    FontAttributes="Bold"
-                    TextColor="#0E1B4D" />
-
-                <!-- Answer field -->
-                <Border
-                    BackgroundColor="White"
-                    Stroke="#D9DCE8"
-                    StrokeThickness="1"
-                    Padding="4">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="18" />
-                    </Border.StrokeShape>
-
-                    <Entry
-                        Placeholder="Skriv dit svar"
-                        PlaceholderColor="#9A9FB2"
-                        Text="{Binding SubmittedAnswer}"
-                        FontSize="17"
-                        TextColor="#0E1B4D"
-                        BackgroundColor="Transparent"
-                        Margin="12,4" />
-
+                <Border BackgroundColor="White" Stroke="#D6E2F5"
+                        StrokeThickness="1" Padding="16">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="22" /></Border.StrokeShape>
+                    <Grid ColumnDefinitions="48,*" ColumnSpacing="12">
+                        <Border Grid.Column="0" WidthRequest="44" HeightRequest="44"
+                                BackgroundColor="{Binding MissionSoftColor}" StrokeThickness="0"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape><RoundRectangle CornerRadius="22" /></Border.StrokeShape>
+                            <Label Text="☷" FontSize="28" TextColor="{Binding MissionAccentColor}"
+                                   VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="5 opgaver · Tag én ad gangen" FontSize="16"
+                                   FontAttributes="Bold" TextColor="#0E1B4D" />
+                            <Label Text="Når du går videre, gemmes svaret. Du kan ikke gå tilbage og rette det."
+                                   TextColor="#5C6984" FontSize="14" LineBreakMode="WordWrap" />
+                        </VerticalStackLayout>
+                    </Grid>
                 </Border>
 
-                <!-- Validation message -->
-                <Label
-                    Text="{Binding ErrorMessage}"
-                    TextColor="{StaticResource Error}"
-                    FontSize="14"
-                    LineBreakMode="WordWrap" />
-
+                <Button Text="Gå til opgave 1" Command="{Binding BeginExercisesCommand}"
+                        BackgroundColor="{Binding MissionAccentColor}" TextColor="White"
+                        FontSize="18" CornerRadius="24" MinimumHeightRequest="56"
+                        Margin="0,8,0,0" />
             </VerticalStackLayout>
+        </ScrollView>
 
-            <!-- Encouragement -->
-            <Border
-                BackgroundColor="#E8F2FF"
-                StrokeThickness="0"
-                Padding="18"
-                Margin="0,2,0,0">
-
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="20" />
-                </Border.StrokeShape>
-
-                <Grid
-                    ColumnDefinitions="Auto,*"
-                    ColumnSpacing="12">
-
-                    <Border
-                        Grid.Column="0"
-                        WidthRequest="42"
-                        HeightRequest="42"
-                        BackgroundColor="White"
-                        StrokeThickness="0"
-                        VerticalOptions="Center">
-
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="21" />
-                        </Border.StrokeShape>
-
-                        <Label
-                            Text="?"
-                            FontSize="20"
-                            FontAttributes="Bold"
-                            TextColor="#3974D9"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center" />
-
+        <!-- Five-step exercise flow with one confirmed backend submission per exercise. -->
+        <ScrollView IsVisible="{Binding IsExercisesVisible}">
+            <VerticalStackLayout Padding="22,24,22,36" Spacing="18">
+                <Label Text="{Binding TopicName}" TextColor="{Binding MissionAccentColor}"
+                       FontAttributes="Bold" FontSize="15" />
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                    <Label Text="Løs opgaven" TextColor="#0E1B4D" FontSize="32"
+                           FontAttributes="Bold" VerticalOptions="Center" />
+                    <Border Grid.Column="1" BackgroundColor="{Binding MissionSoftColor}"
+                            Padding="12,8" StrokeThickness="0" VerticalOptions="Center">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="20" /></Border.StrokeShape>
+                        <Label Text="{Binding ExercisePositionText}" TextColor="{Binding MissionAccentColor}"
+                               FontAttributes="Bold" FontSize="13" />
                     </Border>
-
-                    <Label
-                        Grid.Column="1"
-                        Text="Læs opgaven roligt igennem, og skriv det svar du kommer frem til."
-                        FontSize="14"
-                        TextColor="#587194"
-                        LineHeight="1.25"
-                        VerticalOptions="Center" />
-
+                </Grid>
+                <Label Text="{Binding ExerciseSetTitle}" TextColor="#6E7A96"
+                       FontSize="14" LineBreakMode="WordWrap" />
+                <Grid ColumnDefinitions="*,*,*,*,*" ColumnSpacing="8" Margin="0,4,0,4">
+                    <Border Grid.Column="0" BackgroundColor="{Binding Step1Color}" StrokeThickness="0"
+                            WidthRequest="42" HeightRequest="42" HorizontalOptions="Center">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="21" /></Border.StrokeShape>
+                        <Label Text="1" TextColor="{Binding Step1TextColor}" FontAttributes="Bold" FontSize="15"
+                               VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Border>
+                    <Border Grid.Column="1" BackgroundColor="{Binding Step2Color}" StrokeThickness="0"
+                            WidthRequest="42" HeightRequest="42" HorizontalOptions="Center">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="21" /></Border.StrokeShape>
+                        <Label Text="2" TextColor="{Binding Step2TextColor}" FontAttributes="Bold" FontSize="15"
+                               VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Border>
+                    <Border Grid.Column="2" BackgroundColor="{Binding Step3Color}" StrokeThickness="0"
+                            WidthRequest="42" HeightRequest="42" HorizontalOptions="Center">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="21" /></Border.StrokeShape>
+                        <Label Text="3" TextColor="{Binding Step3TextColor}" FontAttributes="Bold" FontSize="15"
+                               VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Border>
+                    <Border Grid.Column="3" BackgroundColor="{Binding Step4Color}" StrokeThickness="0"
+                            WidthRequest="42" HeightRequest="42" HorizontalOptions="Center">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="21" /></Border.StrokeShape>
+                        <Label Text="4" TextColor="{Binding Step4TextColor}" FontAttributes="Bold" FontSize="15"
+                               VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Border>
+                    <Border Grid.Column="4" BackgroundColor="{Binding Step5Color}" StrokeThickness="0"
+                            WidthRequest="42" HeightRequest="42" HorizontalOptions="Center">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="21" /></Border.StrokeShape>
+                        <Label Text="5" TextColor="{Binding Step5TextColor}" FontAttributes="Bold" FontSize="15"
+                               VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Border>
                 </Grid>
 
-            </Border>
-
-            <!-- Next exercise button -->
-            <Button
-                Text="{Binding NextButtonText}"
-                Command="{Binding NextExerciseCommand}"
-                FontSize="18"
-                Margin="0,8,0,0" />
-
-        </VerticalStackLayout>
-
-    </ScrollView>
-
+                <Border BackgroundColor="{Binding MissionSoftColor}" StrokeThickness="0"
+                        Padding="22,24">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="26" /></Border.StrokeShape>
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="OPGAVEN" FontSize="13" FontAttributes="Bold"
+                               TextColor="{Binding MissionAccentColor}" />
+                        <Label Text="{Binding ExerciseText}" FontSize="19" LineHeight="1.25"
+                               TextColor="#0E1B4D" LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Border>
+                <Label Text="Dit svar" TextColor="#0E1B4D" FontAttributes="Bold" FontSize="17" />
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                    <Border Grid.Column="0" BackgroundColor="White" Stroke="#D6E2F5"
+                            StrokeThickness="1" Padding="4">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="17" /></Border.StrokeShape>
+                        <Entry Placeholder="Skriv dit svar her" Text="{Binding SubmittedAnswer}"
+                               IsEnabled="{Binding CanEditAnswer}" Keyboard="Numeric"
+                               TextColor="#0E1B4D" PlaceholderColor="#7D8AA3"
+                               FontSize="17" BackgroundColor="Transparent" Margin="10,5" />
+                    </Border>
+                    <Label Grid.Column="1" Text="{Binding UnitText}" TextColor="#607395"
+                           FontSize="15" VerticalOptions="Center" LineBreakMode="NoWrap" />
+                </Grid>
+                <Label Text="Skriv kun tal. Brug komma i decimaltal (fx 1,5)."
+                       TextColor="#607395" FontSize="13" />
+                <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Error}"
+                       FontSize="14" LineBreakMode="WordWrap" />
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                                   Color="{Binding MissionAccentColor}" />
+                <Grid ColumnDefinitions="*,2*" ColumnSpacing="12" Margin="0,15,0,0">
+                    <Button Grid.Column="0" Text="Forlad" Command="{Binding LeaveExerciseCommand}"
+                            BackgroundColor="White" TextColor="{Binding MissionAccentColor}"
+                            BorderColor="{Binding MissionOutlineColor}" BorderWidth="1"
+                            FontSize="16" CornerRadius="20" MinimumHeightRequest="54"
+                            IsEnabled="{Binding CanLeave}" />
+                    <Button Grid.Column="1" Text="{Binding NextButtonText}"
+                            Command="{Binding NextExerciseCommand}"
+                            BackgroundColor="{Binding MissionAccentColor}"
+                            TextColor="White" FontSize="17" CornerRadius="20"
+                            MinimumHeightRequest="54" IsEnabled="{Binding CanNavigate}" />
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

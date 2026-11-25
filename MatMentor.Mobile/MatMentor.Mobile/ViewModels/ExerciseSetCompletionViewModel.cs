@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+// File: MatMentor.Mobile/ViewModels/ExerciseSetCompletionViewModel.cs
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
@@ -13,38 +14,33 @@ public class ExerciseSetCompletionViewModel : INotifyPropertyChanged, IQueryAttr
     public string TopicName
     {
         get => _topicName;
-        private set
-        {
-            _topicName = value;
-            OnPropertyChanged();
-        }
+        private set { _topicName = value; OnPropertyChanged(); }
     }
+
+    public string ResultText => "Dine fem svar er gemt, og øvesættet er afsluttet.";
+    public string UnansweredText => "Der vises ikke point eller facit, da backend ikke har et resultat-endpoint i v1.";
 
     public ICommand ChooseTopicCommand { get; }
 
     public ExerciseSetCompletionViewModel()
     {
-        ChooseTopicCommand = new Command(
-            async () => await ChooseTopicAsync());
+        ChooseTopicCommand = new Command(async () => await ChooseTopicAsync());
     }
 
-    // Receives the completed topic name.
+    // Reads the confirmed topic name after the server has completed the attempt.
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.TryGetValue("topicName", out var topicName))
-        {
+        if (query.TryGetValue("topicName", out object? topicName))
             TopicName = topicName?.ToString() ?? string.Empty;
-        }
     }
 
-    // Goes back to the existing topic selection page
-    // instead of opening a brand new one.
+    // Returns to topic selection after a successfully confirmed completion.
     private async Task ChooseTopicAsync()
     {
         await Shell.Current.GoToAsync("../../..");
     }
 
-    // Notifies the view when a property value changes.
+    // Notifies the page when the displayed topic changes.
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
