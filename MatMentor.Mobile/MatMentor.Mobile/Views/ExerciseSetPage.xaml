@@ -1,150 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
-<ContentPage
-    x:Class="MatMentor.Mobile.Views.ExerciseSetPage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
-    x:DataType="viewModels:ExerciseSetViewModel"
-    Title="Øvesæt"
-    BackgroundColor="{StaticResource Background}">
-
+<ContentPage x:Class="MatMentor.Mobile.Views.ExerciseSetPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MatMentor.Mobile.ViewModels"
+             x:DataType="viewModels:ExerciseSetViewModel"
+             Title="Øvesæt" BackgroundColor="#F8FAFF">
     <ScrollView>
-        <VerticalStackLayout
-            Padding="24,34,24,32"
-            Spacing="22">
-
-            <!-- Page header -->
-            <VerticalStackLayout Spacing="6">
-
-                <Label
-                    Text="Klar til at øve?"
-                    FontSize="34"
-                    FontAttributes="Bold"
-                    TextColor="#0E1B4D" />
-
-                <Label
-                    Text="Her er dit næste øvesæt."
-                    FontSize="18"
-                    TextColor="#6F7693" />
-
-            </VerticalStackLayout>
-
-            <!-- Selected topic card -->
-            <Border
-                BackgroundColor="#F1ECFF"
-                StrokeThickness="0"
-                Padding="24"
-                Margin="0,8,0,0">
-
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="28" />
-                </Border.StrokeShape>
-
-                <Border.Shadow>
-                    <Shadow
-                        Brush="#12000000"
-                        Offset="0,6"
-                        Radius="14"
-                        Opacity="0.18" />
-                </Border.Shadow>
-
-                <VerticalStackLayout Spacing="12">
-
-                    <!-- Card label -->
-                    <Label
-                        Text="DIT EMNE"
-                        FontSize="13"
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource Primary}" />
-
-                    <!-- Selected topic -->
-                    <Label
-                        Text="{Binding TopicName}"
-                        FontSize="27"
-                        FontAttributes="Bold"
-                        TextColor="#0E1B4D"
-                        LineBreakMode="WordWrap" />
-
-                    <Label
-                        Text="Du får fem opgaver inden for dette emne."
-                        FontSize="16"
-                        TextColor="#6F7693"
-                        LineHeight="1.25" />
-
+        <VerticalStackLayout Padding="22,34,22,32" Spacing="22">
+            <Label Text="Klar til at øve?" FontSize="35" FontAttributes="Bold" TextColor="#0E1B4D" />
+            <Label Text="Her er dit næste øvesæt." FontSize="18" TextColor="#6B7995" />
+            <Border BackgroundColor="#F2F3EE" StrokeThickness="0" Padding="24" Margin="0,12,0,0">
+                <Border.StrokeShape><RoundRectangle CornerRadius="27" /></Border.StrokeShape>
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="DIT EMNE" FontSize="13" FontAttributes="Bold" TextColor="#58665E" />
+                    <Label Text="{Binding TopicName}" FontSize="29" FontAttributes="Bold"
+                           TextColor="#0E1B4D" LineBreakMode="WordWrap" />
+                    <Label Text="Du får fem opgaver inden for dette emne." FontSize="16"
+                           TextColor="#586D8F" LineHeight="1.25" />
                 </VerticalStackLayout>
-
             </Border>
-
-            <!-- Encouragement card -->
-            <Border
-                BackgroundColor="White"
-                Stroke="#E8E8F2"
-                StrokeThickness="1"
-                Padding="20"
-                Margin="0,4,0,0">
-
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="22" />
-                </Border.StrokeShape>
-
-                <Grid
-                    ColumnDefinitions="Auto,*"
-                    ColumnSpacing="14">
-
-                    <!-- Decorative icon -->
-                    <Border
-                        Grid.Column="0"
-                        WidthRequest="48"
-                        HeightRequest="48"
-                        BackgroundColor="#FFF0D1"
-                        StrokeThickness="0"
-                        VerticalOptions="Center">
-
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="24" />
-                        </Border.StrokeShape>
-
-                        <Label
-                            Text="★"
-                            FontSize="22"
-                            TextColor="#F59E0B"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center" />
-
+            <Border BackgroundColor="White" Stroke="#DCE2D9" StrokeThickness="1"
+                    Padding="19" Margin="0,5,0,0">
+                <Border.StrokeShape><RoundRectangle CornerRadius="21" /></Border.StrokeShape>
+                <Grid ColumnDefinitions="48,*" ColumnSpacing="14">
+                    <Border Grid.Column="0" BackgroundColor="#FFF1D5" StrokeThickness="0"
+                            HeightRequest="45" WidthRequest="45" VerticalOptions="Center">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="23" /></Border.StrokeShape>
+                        <Label Text="★" TextColor="#F5A214" FontSize="23"
+                               VerticalOptions="Center" HorizontalOptions="Center" />
                     </Border>
-
-                    <!-- Encouragement text -->
-                    <VerticalStackLayout
-                        Grid.Column="1"
-                        Spacing="3"
-                        VerticalOptions="Center">
-
-                        <Label
-                            Text="Tag én opgave ad gangen"
-                            FontSize="16"
-                            FontAttributes="Bold"
-                            TextColor="#0E1B4D" />
-
-                        <Label
-                            Text="Du behøver ikke skynde dig."
-                            FontSize="14"
-                            TextColor="#6F7693" />
-
+                    <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                        <Label Text="Tag én opgave ad gangen" FontSize="16" FontAttributes="Bold"
+                               TextColor="#0E1B4D" />
+                        <Label Text="Du behøver ikke skynde dig." FontSize="14" TextColor="#63728F" />
                     </VerticalStackLayout>
-
                 </Grid>
-
             </Border>
-
-            <!-- Start exercise set button -->
-            <Button
-                Text="Start øvesæt"
-                Command="{Binding StartExerciseSetCommand}"
-                FontSize="18"
-                Margin="0,12,0,0" />
-
+            <Label Text="Din mission bliver vist, før du går i gang." FontSize="14"
+                   TextColor="#63728F" HorizontalTextAlignment="Center" Margin="0,4,0,0" />
+            <ActivityIndicator IsRunning="{Binding IsStarting}" IsVisible="{Binding IsStarting}" Color="#58665E" />
+            <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Error}" FontSize="14" />
+            <Button Text="Start øvesæt" Command="{Binding StartExerciseSetCommand}"
+                    IsEnabled="{Binding CanStart}" BackgroundColor="#58665E"
+                    TextColor="White" FontSize="18" CornerRadius="23" MinimumHeightRequest="56"
+                    Margin="0,6,0,0" />
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

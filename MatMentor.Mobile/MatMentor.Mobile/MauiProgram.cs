@@ -38,6 +38,16 @@ namespace MatMentor.Mobile
             builder.Services.AddTransient<StartViewModel>();
             builder.Services.AddTransient<StartPage>();
 
+                        builder.Services.AddTransient<IExerciseSetApiService, ExerciseSetApiService>();
+            builder.Services.AddTransient<TopicSelectionViewModel>();
+            builder.Services.AddTransient<TopicSelectionPage>();
+            builder.Services.AddTransient<ExerciseSetViewModel>();
+            builder.Services.AddTransient<ExerciseSetPage>();
+            builder.Services.AddTransient<ExerciseViewModel>();
+            builder.Services.AddTransient<ExercisePage>();
+            builder.Services.AddTransient<ExerciseSetCompletionViewModel>();
+            builder.Services.AddTransient<ExerciseSetCompletionPage>();
+
             builder.Services.AddTransient<CreateStudentProfileApiService>();
             builder.Services.AddTransient<CreateStudentProfileViewModel>();
             builder.Services.AddTransient<CreateStudentProfilePage>();

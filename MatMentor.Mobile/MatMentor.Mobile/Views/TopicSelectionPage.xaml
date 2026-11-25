@@ -35,6 +35,12 @@
 
             </VerticalStackLayout>
 
+            <!-- Server errors and loading state for topic selection -->
+            <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+            <Label Text="{Binding SelectionMessage}"
+                   TextColor="{StaticResource Error}"
+                   FontSize="14" LineBreakMode="WordWrap" />
+
             <!-- Fraction, decimal and percent -->
             <Border
                 BackgroundColor="#F1ECFF"

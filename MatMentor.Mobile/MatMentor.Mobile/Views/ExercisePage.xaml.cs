@@ -1,25 +1,27 @@
+// File: MatMentor.Mobile/Views/ExercisePage.xaml.cs
 using MatMentor.Mobile.ViewModels;
 
 namespace MatMentor.Mobile.Views;
 
 public partial class ExercisePage : ContentPage
 {
-    public ExercisePage()
+    public ExercisePage(ExerciseViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = new ExerciseViewModel();
+        BindingContext = viewModel;
     }
 
-    // Uses the previous-exercise behavior when the Android back button is pressed.
+    // Handles Android back as an explicit exit, never as navigation to earlier exercises.
     protected override bool OnBackButtonPressed()
     {
         if (BindingContext is ExerciseViewModel viewModel &&
-            viewModel.PreviousExerciseCommand.CanExecute(null))
+            viewModel.CanLeave &&
+            viewModel.LeaveExerciseCommand.CanExecute(null))
         {
-            viewModel.PreviousExerciseCommand.Execute(null);
+            viewModel.LeaveExerciseCommand.Execute(null);
             return true;
         }
 
-        return base.OnBackButtonPressed();
+        return true;
     }
 }

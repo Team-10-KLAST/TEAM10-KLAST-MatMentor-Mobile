@@ -102,7 +102,7 @@
                         LineBreakMode="WordWrap" />
 
                     <Label
-                        Text="Du har besvaret alle 5 opgaver."
+                        Text="{Binding ResultText}"
                         FontSize="16"
                         TextColor="#6F7693"
                         HorizontalTextAlignment="Center" />
@@ -110,6 +110,11 @@
                 </VerticalStackLayout>
 
             </Border>
+
+            <Label Text="{Binding UnansweredText}"
+                   FontSize="16"
+                   TextColor="#6F7693"
+                   HorizontalTextAlignment="Center" />
 
             <!-- Encouragement card -->
             <Border
